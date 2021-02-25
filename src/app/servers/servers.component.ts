@@ -10,13 +10,19 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class ServersComponent implements OnInit, OnDestroy {
   allowNewServer = false;
   timeoutId = 0;
-
-  onClickAddServer(): void {
-    this.allowNewServer = !this.allowNewServer;
-  }
+  serverCreationStatus = 'No server was created!';
 
   constructor() {
 
+  }
+
+  onClickAddServer(): void {
+    this.allowNewServer = !this.allowNewServer;
+    this.createServer();
+  }
+
+  private createServer(): void {
+    this.serverCreationStatus = 'Sever was created';
   }
 
   ngOnInit(): void {

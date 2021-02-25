@@ -4,8 +4,9 @@
 <button class="btn btn-primary"
         [disabled]="!allowNewServer"
         (click)="onClickAddServer()"
->
+><!--Even binding делается с помощью круглых скобок. Таков синтаксис Ангуляра-->
   Add Server</button>
+<p>{{serverCreationStatus}}</p>
 <p>allowNewServer = {{ allowNewServer }}</p>
 <p>An HTML <code>&lt;span&gt;</code> element with property <code>innerHTML</code> bound to an <i>allowNewServer</i> property: <span [innerHTML]="allowNewServer"></span></p>
 <app-server></app-server>
