@@ -1,2 +1,11 @@
 <h3>Servers</h3>
+<p>Property binding example</p>
+<p>Проперти байдинг :) делается с помощью квадратных скобок [ ]</p>
+<button class="btn btn-primary"
+        [disabled]="!allowNewServer"
+        (click)="onClickAddServer()"
+>
+  Add Server</button>
+<p>allowNewServer = {{ allowNewServer }}</p>
+<p>An HTML <code>&lt;span&gt;</code> element with property <code>innerHTML</code> bound to an <i>allowNewServer</i> property: <span [innerHTML]="allowNewServer"></span></p>
 <app-server></app-server>

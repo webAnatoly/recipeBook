@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-servers',
@@ -7,11 +7,29 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.scss']
 })
-export class ServersComponent implements OnInit {
+export class ServersComponent implements OnInit, OnDestroy {
+  allowNewServer = false;
+  timeoutId = 0;
 
-  constructor() { }
+  onClickAddServer(): void {
+    this.allowNewServer = !this.allowNewServer;
+  }
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
+    this.timeoutId = setTimeout(() => {
+      this.allowNewServer = true;
+    }, 2000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+    console.log('component destroyed');
   }
 
 }
