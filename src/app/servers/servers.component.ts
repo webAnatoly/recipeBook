@@ -11,6 +11,7 @@ export class ServersComponent implements OnInit, OnDestroy {
   allowNewServer = false;
   timeoutId = 0;
   serverCreationStatus = 'No server was created!';
+  serverName = '';
 
   constructor() {
 
@@ -23,6 +24,10 @@ export class ServersComponent implements OnInit, OnDestroy {
 
   private createServer(): void {
     this.serverCreationStatus = 'Sever was created';
+  }
+
+  onUpdateServerName(event: Event): void {
+    this.serverName = (event.target as HTMLInputElement).value;
   }
 
   ngOnInit(): void {
