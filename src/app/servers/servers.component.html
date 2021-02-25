@@ -25,6 +25,6 @@
 <p>An HTML <code>&lt;span&gt;</code> element with property <code>innerHTML</code> bound to an <i>allowNewServer</i> property: <span [innerHTML]="allowNewServer"></span></p>
 <!--<app-server></app-server>-->
 
-<div *ngFor="let server of servers">
-  <app-server [serverName]="server"></app-server>
+<div *ngFor="let server of servers; let i = index"><!--index здесь, я так понимаю, зарезервированная ангуляровская переменная   -->
+  <app-server [serverName]="server" [serverId]=i></app-server>
 </div>
