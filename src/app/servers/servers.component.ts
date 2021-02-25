@@ -12,6 +12,7 @@ export class ServersComponent implements OnInit, OnDestroy {
   timeoutId = 0;
   serverCreationStatus = 'No server was created!';
   serverName = 'TestServer';
+  servers = ['TestServer', 'TestServer_2'];
 
   constructor() {
 
@@ -22,6 +23,7 @@ export class ServersComponent implements OnInit, OnDestroy {
   }
 
   private createServer(): void {
+    this.servers.push(this.serverName);
     this.serverCreationStatus = `Sever was created! Name is ${this.serverName}`;
   }
 

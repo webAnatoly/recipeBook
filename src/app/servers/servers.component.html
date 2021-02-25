@@ -23,4 +23,8 @@
 <p>{{serverCreationStatus}}</p>
 <p>allowNewServer = {{ allowNewServer }}</p>
 <p>An HTML <code>&lt;span&gt;</code> element with property <code>innerHTML</code> bound to an <i>allowNewServer</i> property: <span [innerHTML]="allowNewServer"></span></p>
-<app-server></app-server>
+<!--<app-server></app-server>-->
+
+<div *ngFor="let server of servers">
+  <app-server [serverName]="server"></app-server>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-server',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./server.component.scss']
 })
 export class ServerComponent implements OnInit {
-  serverId = 10;
+  @Input()serverId = 10;
+  @Input()serverName = 'NoName';
   private serverStatus = 'offline';
   curlyBraces = `{{}}`;
 
