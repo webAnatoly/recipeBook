@@ -11,7 +11,7 @@ export class ServersComponent implements OnInit, OnDestroy {
   allowNewServer = false;
   timeoutId = 0;
   serverCreationStatus = 'No server was created!';
-  serverName = '';
+  serverName = 'TestServer';
 
   constructor() {
 

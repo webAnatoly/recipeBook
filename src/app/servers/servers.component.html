@@ -1,11 +1,17 @@
 <h3>Servers</h3>
 <label for="inputText_1">Server Name</label>
+<!--<input-->
+<!--  type="text"-->
+<!--  class="form-control"-->
+<!--  id="inputText_1"-->
+<!--  (input)="onUpdateServerName($event)"-->
+<!--&gt; &lt;!&ndash;$event - ангуляровская зарезервированная переменная содержащая обект события. Как-то так.&ndash;&gt;-->
 <input
   type="text"
   class="form-control"
   id="inputText_1"
-  (input)="onUpdateServerName($event)"
-> <!--$event - ангуляровская зарезервированная переменная содержащая обект события. Как-то так.-->
+  [(ngModel)]="serverName">
+<!--ngModel это two-way-binding директива из ангуляровского модуля FormsModule-->
 <p>Server name is: {{serverName}}</p>
 <p>Property binding example</p>
 <p>Проперти байдинг :) делается с помощью квадратных скобок [ ]</p>
