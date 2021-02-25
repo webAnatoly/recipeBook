@@ -18,12 +18,11 @@ export class ServersComponent implements OnInit, OnDestroy {
   }
 
   onClickAddServer(): void {
-    this.allowNewServer = !this.allowNewServer;
     this.createServer();
   }
 
   private createServer(): void {
-    this.serverCreationStatus = 'Sever was created';
+    this.serverCreationStatus = `Sever was created! Name is ${this.serverName}`;
   }
 
   onUpdateServerName(event: Event): void {
