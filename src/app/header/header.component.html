@@ -1,23 +1,28 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="#" class="navbar-brand">Recipe Book</a>
+<nav class="nav">
+  <div class="nav-container">
+    <div class="logo">
+      <a href="#" class="">Recipe Book</a>
     </div>
 
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="#">Recipes</a></li>
-        <li><a href="#">Shopping List</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" role="button">Manage</a>
-          <ul class="dropdown-menu">
-            <li><a href="">Save Data</a></li>
-            <li><a href="">Fetch Data</a></li>
-          </ul>
-        </li>
-      </ul>
+    <div class="menu-wrapper">
+      <div class="menu-container">
+        <ul>
+          <li><a href="#">Recipes</a></li>
+          <li><a href="#">Shopping List</a></li>
+        </ul>
+      </div>
+      <div class="right-menu-container">
+        <div class="dropdown">
+          <div class="dropdown__button" role="button" (click)="onClickDropdown()">
+            <span>Manage</span>&nbsp;
+            <span class="arrow-down" [ngStyle]="{'transform': isDropdownVisible ? 'rotate(90deg)' : ''}"></span>
+          </div>
+          <div class="dropdown-menu" *ngIf="isDropdownVisible">
+            <a href="#" class="dropdown-item">Save Data</a>
+            <a href="#" class="dropdown-item">Fetch Data</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

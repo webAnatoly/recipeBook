@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;1,300&display=swap');
+@import '~normalize.css';
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* все элементы (включая псевдо элементы всех элементов ::before и ::after)
+  будут наследовать свойство box-sizing: border-box; от body */
+}
+
+html {
+  font-size: 62.5%; /* This defines what 1rem is */
+
+  /* Если для элемента html установить font-size в процентах, то процент берется от шрифта браузера по умолчанию.
+  Браузеры по умолчанию ставят шрифт равным 16px, а нам нужен 10px, поэтому 62.5% от 16px это как раз 10px.
+  Можно сразу жестко задать 10px, но тогда те пользователи,
+  которые в настройках своих браузеров увеличили шрифт по умолчанию, не увидят эффекта увелечения шрифта */
+
+  /* Если бы это свойство использовалось только для шрифтов, то его можно было разместить в папку typograpy,
+  но оно лежит тут потому-что по задумке оно используется
+  не только для шрифтов, но и для маржинов/паддингов и других размерностей устанавливаемых через rem */
+}
+
+body {
+  font-size: 1.8rem;
+  font-family: 'Exo 2', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active,
+{
+  color: #7a7a7a;
+  text-decoration: none;
+}
