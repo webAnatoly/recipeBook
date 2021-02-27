@@ -4,11 +4,22 @@
       <a href="#" class="">Recipe Book</a>
     </div>
 
+    <div class="btn nav__mob-menu-btn" role="button" (click)="onClickMobileMenu()">
+      <span>{{isMobileMenuVisible ? 'Close' : 'Open'}} Menu</span>
+    </div>
+
+
     <div class="menu-wrapper">
       <div class="menu-container">
-        <ul>
+        <ul [ngClass]="{'show-mob-menu': isMobileMenuVisible}">
           <li><a href="#">Recipes</a></li>
           <li><a href="#">Shopping List</a></li>
+          <li><a href="#">Another menu item 1</a></li>
+          <li><a href="#">Another menu item 2</a></li>
+          <li><a href="#">Another menu item 3</a></li>
+          <li><a href="#">Another menu item 4</a></li>
+          <li><a href="#">Another menu item 5</a></li>
+          <li><a href="#">Another menu item 6</a></li>
         </ul>
       </div>
       <div class="right-menu-container">

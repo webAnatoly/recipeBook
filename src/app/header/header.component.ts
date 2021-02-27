@@ -7,8 +7,9 @@ import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   isDropdownVisible = false;
+  isMobileMenuVisible = false;
 
-  constructor(private eRef: ElementRef) { }
+  constructor(public eRef: ElementRef) { }
 
   ngOnInit(): void {
   }
@@ -31,4 +32,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  onClickMobileMenu(): void {
+    this.isMobileMenuVisible = !this.isMobileMenuVisible;
+  }
 }

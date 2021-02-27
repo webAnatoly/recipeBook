@@ -1,9 +1,27 @@
+@import '../../assets/variables';
+
 .nav {
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  top: 0;
+  background-color: white;
 
   &-container {
     display: flex;
     align-items: center;
     padding: 1rem;
+    width: inherit;
+  }
+
+  &__mob-menu-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    @media only screen and (min-width: $bp-small) {
+      display: none;
+    }
   }
 
   & .menu-wrapper {
@@ -11,15 +29,56 @@
     display: flex;
 
     & .menu-container {
-      display: flex;
       flex: 1 0 auto;
+      display: flex;
 
       & ul {
         display: flex;
+        flex-wrap: wrap;
+        width: 80vw;
         align-items: center;
 
+        @media only screen and (max-width: $bp-largest-x) {
+          width: 60vw;
+        }
+        @media only screen and (max-width: $bp-large) {
+          width: 50vw;
+        }
+        @media only screen and (max-width: $bp-small) {
+          width: 100vw;
+          position: absolute; // относительно элемента nav
+          top: 5.5rem;
+          left: 50%;
+          transform: translate(100%, -10%);
+          background-color: rgba(128,128,128,0.9);
+          color: whitesmoke;
+          border-radius: 3px;
+          box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+          z-index: 1;
+          padding-top: .5rem;
+          padding-bottom: 1rem;
+          transition: transform .3s ease-in;
+          visibility: collapse;
+
+          & li,
+          & a,
+          & p,
+          & div {
+            color: whitesmoke;
+          }
+
+        }
+
         & li {
-          margin: 0 2rem;
+          margin: .2rem 2rem;
+        }
+      }
+
+      & .show-mob-menu {
+
+        @media only screen and (max-width: $bp-small) {
+          transform: translate(-50%, -10%);
+          visibility: visible;
         }
       }
     }
@@ -32,6 +91,12 @@
 
 .logo {
   font-size: 3rem;
+  flex: 0 0 20rem;
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 2rem;
+    flex: 0 0 auto;
+  }
 }
 
 ul {
