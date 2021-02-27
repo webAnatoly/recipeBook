@@ -55,6 +55,15 @@ div.btn {
   line-height: 1.2;
 }
 
+a.btn-primary,
+input.btn-primary,
+button.btn-primary,
+div.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
 a.btn-success,
 input.btn-success,
 button.btn-success,
