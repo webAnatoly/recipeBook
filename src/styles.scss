@@ -50,4 +50,15 @@ div.btn {
   background-color: white;
   border: none;
   outline: none;
+  padding: 1rem;
+  border-radius: .5rem;
+  line-height: 1.2;
+}
+
+a.btn-success,
+input.btn-success,
+button.btn-success,
+div.btn-success {
+  background-color: #4CAF50;
+  color: white;
 }

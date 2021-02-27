@@ -1,18 +1,20 @@
+<br>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
     <button class="btn btn-success">New Recipe</button>
   </div>
 </div>
+<br>
 <div class="row">
-  <div class="col-xs-12">
-    <a href="#" *ngFor="let recipe of recipes">
-      <div>
+  <div class="col-12">
+    <a href="#" *ngFor="let recipe of recipes" class="card card--recipe-list-margin">
+      <div class="card-content">
         <h4>{{recipe.name}}</h4>
         <p>{{recipe.description}}</p>
       </div>
-      <span>
-        <img src="{{recipe.imagePath}}" alt="picture of {{recipe.name}} recipe" style="width:100%;height: auto;">
-      </span>
+      <div class="card__img">
+        <img [src]="recipe.imagePath" alt="picture of {{recipe.name}} recipe">
+      </div>
     </a>
 <!--    <app-recipe-item></app-recipe-item>-->
   </div>
