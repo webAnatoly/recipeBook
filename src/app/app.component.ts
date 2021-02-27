@@ -20,6 +20,7 @@ export class AppComponent implements AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onWindowResize(): void {
     this.computeMarginForMainElement();
+    this.fitMobileMenuPosition();
   }
 
   computeMarginForMainElement(): void {
@@ -31,5 +32,18 @@ export class AppComponent implements AfterViewInit {
     // и на основе, полученной высоты задаём отступ элементу <main>
     const marginTop = this.header.eRef.nativeElement.querySelector('nav').offsetHeight;
     this.currentElemRef.nativeElement.querySelector('main').style.marginTop = marginTop + 'px';
+
+    this.fitMobileMenuPosition();
+  }
+
+  fitMobileMenuPosition(): void {
+    // Подгоняем выплывающее мобильное меню, чтобы верхняя граница меню совпадала с нижней границей nav элемента
+    if (window.innerWidth <= 600) {
+      const top = this.header.eRef.nativeElement.querySelector('nav').offsetHeight;
+      const menuElement = this.header.eRef.nativeElement.querySelector('.menu-container > ul');
+      if (menuElement) {
+        menuElement.style.top = top + 'px';
+      }
+    }
   }
 }
