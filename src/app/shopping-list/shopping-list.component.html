@@ -2,12 +2,11 @@
   <div class="col-10">
     <app-shopping-edit></app-shopping-edit>
     <hr>
-    <ul class="app-ul">
-      <li class="app-ul-item"><a class="btn">asdf</a></li>
-      <li class="app-ul-item"><a class="btn">asdf</a></li>
-      <li class="app-ul-item">text</li>
-      <li class="app-ul-item"><span>text</span></li>
-      <li class="app-ul-item"><p>text</p></li>
+    <ul class="app-ul shopping-list-ul">
+      <li class="app-ul-item"
+          *ngFor="let ingredient of ingredients">
+        <a class="btn">{{ingredient.name}} ({{ingredient.amount}})</a>
+      </li>
     </ul>
   </div>
 </div>

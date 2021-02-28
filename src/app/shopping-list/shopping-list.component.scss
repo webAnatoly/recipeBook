@@ -1,0 +1,15 @@
+.shopping-list {
+
+  &-ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > li {
+      margin: .5rem 0;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

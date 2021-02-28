@@ -66,6 +66,13 @@ a:active,
   }
 }
 
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 /* Кнопки */
 a.btn,
 input.btn,
@@ -96,4 +103,36 @@ button.btn-success,
 div.btn-success {
   background-color: #4CAF50;
   color: white;
+}
+
+a.btn-danger,
+input.btn-danger,
+button.btn-danger,
+div.btn-danger {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Инпуты для ввода текста */
+.app-input-group {
+  display: flex;
+
+  & > input[type="text"],
+  & > input[type="number"] {
+    padding: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: .5rem;
+
+    &:focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+    }
+  }
+
+  &--column {
+    flex-direction: column;
+  }
 }
