@@ -13,3 +13,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   name = 'Tolik';
 }
+/*
+Инструменты дебаггинга
+1) Reading error messages
+2) Using source maps
+3) Dev tools extension for debugging (Augury) https://augury.rangle.io/
+
+ну и console.log() никто не отменял.
+*/
