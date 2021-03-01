@@ -1,11 +1,18 @@
 <header>
-  <app-header></app-header>
+  <app-header (featureSelected)="onNavigate($event)"></app-header>
 </header>
-<main class="container" style="border: 1px solid red;" [ngStyle]="{'margin-top': marginTop + 'px'}">
+<main class="container" style="border: 1px solid blue;" [ngStyle]="{'margin-top': marginTop + 'px'}">
   <div class="row">
-    <div class="col-md-12">
-      <app-recipes></app-recipes>
-      <app-shopping-list></app-shopping-list>
+    <div class="col-md-12" [ngSwitch]="sectionName">
+      <ng-container *ngSwitchCase="'recipe'">
+        <app-recipes></app-recipes>
+      </ng-container>
+      <ng-container *ngSwitchCase="'shopping-list'">
+        <app-shopping-list></app-shopping-list>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <app-recipes></app-recipes>
+      </ng-container>
     </div>
   </div>
 </main>

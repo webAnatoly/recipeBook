@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,7 @@ import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 export class HeaderComponent implements OnInit {
   isDropdownVisible = false;
   isMobileMenuVisible = false;
+  @Output() featureSelected: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public eRef: ElementRef) { }
 
@@ -16,6 +17,10 @@ export class HeaderComponent implements OnInit {
 
   onClickDropdown(): void {
     this.isDropdownVisible = !this.isDropdownVisible;
+  }
+
+  onSelect(feature: string): void {
+    this.featureSelected.emit(feature);
   }
 
   // Отслеживает клик на документе и если меню открыто (и клик был не на меню), то закрывает меню.

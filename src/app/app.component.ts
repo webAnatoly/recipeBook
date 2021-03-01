@@ -12,9 +12,14 @@ export class AppComponent implements AfterViewInit {
   header!: HeaderComponent;
 
   marginTop = 80;
+  sectionName = 'recipe';
 
   constructor(private currentElemRef: ElementRef) {
 
+  }
+
+  onNavigate(event: string): void {
+    this.sectionName = event;
   }
 
   @HostListener('window:resize', ['$event'])
