@@ -1,9 +1,9 @@
 <a href="#" class="card card--recipe-list-margin">
   <div class="card-content">
-    <h4>{{recipeName}}</h4>
-    <p>{{recipeDescription}}</p>
+    <h4>{{recipe.name}}</h4>
+    <p>{{recipe.description}}</p>
   </div>
   <div class="card__img">
-    <img [src]="recipeImagePath" alt="{{recipeName}}">
+    <img [src]="recipe.imagePath" alt="{{recipe.name}}">
   </div>
 </a>
