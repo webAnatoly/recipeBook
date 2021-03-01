@@ -3,16 +3,9 @@
 </header>
 <main class="container" style="border: 1px solid blue;" [ngStyle]="{'margin-top': marginTop + 'px'}">
   <div class="row">
-    <div class="col-md-12" [ngSwitch]="sectionName">
-      <ng-container *ngSwitchCase="'recipe'">
-        <app-recipes></app-recipes>
-      </ng-container>
-      <ng-container *ngSwitchCase="'shopping-list'">
-        <app-shopping-list></app-shopping-list>
-      </ng-container>
-      <ng-container *ngSwitchDefault>
-        <app-recipes></app-recipes>
-      </ng-container>
+    <div class="col-md-12">
+        <app-recipes *ngIf="loadedFeature === 'recipe'"></app-recipes>
+        <app-shopping-list *ngIf="loadedFeature === 'shopping-list'"></app-shopping-list>
     </div>
   </div>
 </main>
