@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-12">
     <div class="recipe-detail-img">
-      <img src="" alt="">
+      <img src="{{recipeDetail.imagePath}}" alt="{{recipeDetail.name}}">
     </div>
   </div>
 </div><!-- image -->
 <div class="row">
   <div class="col-12">
-    <h1>Recipe Name</h1>
+    <h1>{{ recipeDetail.name }}</h1>
   </div>
 </div><!-- Recipe Name -->
 <div class="row">
@@ -27,7 +27,7 @@
 </div><!-- Управление рецептом -->
 <div class="row">
   <div class="col-12">
-    Description
+    {{recipeDetail.description}}
   </div>
 </div><!-- Description -->
 <div class="row">
