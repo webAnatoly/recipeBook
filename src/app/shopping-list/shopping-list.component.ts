@@ -16,27 +16,6 @@ export class ShoppingListComponent implements OnInit {
     new Ingredient('Watermelon', 1),
     new Ingredient('Watermelon', 1),
     new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
-    new Ingredient('Watermelon', 1),
   ];
 
   constructor() { }
@@ -44,4 +23,7 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onIngredientAdded(ingredient: Ingredient): void {
+    this.ingredients.push(ingredient);
+  }
 }
