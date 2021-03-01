@@ -7,15 +7,10 @@
 <br>
 <div class="row">
   <div class="col-12">
-    <a href="#" *ngFor="let recipe of recipes" class="card card--recipe-list-margin">
-      <div class="card-content">
-        <h4>{{recipe.name}}</h4>
-        <p>{{recipe.description}}</p>
-      </div>
-      <div class="card__img">
-        <img [src]="recipe.imagePath" alt="picture of {{recipe.name}} recipe">
-      </div>
-    </a>
-<!--    <app-recipe-item></app-recipe-item>-->
+    <app-recipe-item *ngFor="let recipe of recipes"
+      [recipeName]="recipe.name"
+      [recipeDescription]="recipe.description"
+      [recipeImagePath]="recipe.imagePath"
+    ></app-recipe-item>
   </div>
 </div>
