@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { BasicHighlightDirective } from './basic-highlight.directive';
 
 /*
 FormsModule позволяет использовать директиву [(ngModel)] в шаблоне, ну и видимо еще что-то связанное с формами.
@@ -11,6 +12,7 @@ FormsModule позволяет использовать директиву [(ngM
 @NgModule({
   declarations: [
     AppComponent,
+    BasicHighlightDirective,
   ],
   imports: [
     BrowserModule,
