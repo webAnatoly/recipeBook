@@ -4,7 +4,7 @@ import { Directive, HostBinding, HostListener, Input, OnInit } from '@angular/co
   selector: '[appAnotherHighlight]'
 })
 export class AnotherHighlightDirective implements OnInit {
-  @Input() bg = 'lightyellow';
+  @Input('appAnotherHighlight') bg = 'lightyellow';
   @Input() bgHover = 'red';
 
   @HostBinding('style.background') background!: string;
