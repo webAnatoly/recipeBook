@@ -7,7 +7,8 @@ import { Recipe } from './recipe.model';
   styleUrls: ['./recipes.component.scss']
 })
 export class RecipesComponent implements OnInit {
-  chosenRecipe: Recipe = {name: '', description: '', imagePath: ''};
+  // chosenRecipe: Recipe | undefined = {name: '', description: '', imagePath: ''};
+  chosenRecipe: Recipe | undefined;
 
   constructor() { }
 

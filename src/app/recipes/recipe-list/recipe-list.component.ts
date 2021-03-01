@@ -18,7 +18,7 @@ export class RecipeListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onRecipeItemClicked(recipe: Recipe): void {
+  onRecipeSelected(recipe: Recipe): void {
     this.recipeChosen.emit(recipe);
   }
 }
