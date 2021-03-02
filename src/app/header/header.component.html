@@ -17,12 +17,12 @@
         </ul>
       </div>
       <div class="right-menu-container">
-        <div class="dropdown">
-          <div class="dropdown__button" role="button" (click)="onClickDropdown()">
+        <div class="dropdown" appDropdown>
+          <div class="dropdown__button" role="button">
             <span>Manage</span>&nbsp;
-            <span class="arrow-down" [ngStyle]="{'transform': isDropdownVisible ? 'rotate(90deg)' : ''}"></span>
+            <span class="arrow-down"></span>
           </div>
-          <div class="dropdown-menu" *ngIf="isDropdownVisible">
+          <div class="dropdown-menu">
             <a href="#" class="dropdown-item">Save Data</a>
             <a href="#" class="dropdown-item">Fetch Data</a>
           </div>
