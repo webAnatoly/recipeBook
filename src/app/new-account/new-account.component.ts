@@ -7,6 +7,11 @@ import { AccountsService } from '../accounts.service';
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.scss'],
   // providers: [LoggingService],
+  /*
+  A provider is an instruction to the Dependency Injection system on how to obtain a value for a dependency.
+  Most of the time, these dependencies are services that you create and provide.
+  https://angular.io/guide/providers
+   */
 })
 export class NewAccountComponent {
 
