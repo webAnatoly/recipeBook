@@ -18,6 +18,8 @@ export class NewAccountComponent {
     вообще не важно где оно срабатывает, оно может срабатывать в нескольких компонентах
     Цель этого примера показать, что можно обмениваться данными между соседними компонентами через общий сервис,
     с помощью EventEmitter.
+
+    cross-component communication through a service with the EventEmitter
      */
 
   }
