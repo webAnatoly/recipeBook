@@ -1,60 +1,22 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <h1>What are Directives</h1>
-      <p>
-        A class that can modify the structure of the DOM or modify attributes in the DOM and component data model. A directive class definition is immediately preceded by a @Directive() decorator that supplies metadata.
-      </p>
-      <p>
-        See more in the Angular <a href="https://angular.io/guide/glossary#directive">documentation</a>.
-      </p>
-      <h2>Определения из видеокурса</h2>
-      <p>Directives are instructions in the DOM!</p>
-      <h2>Пример своей собственной атрибутной директивы (attribute directive), <span appBasicHighlight>стилизующей текст</span></h2>
-      <p>Lorem ipsum dolor sit amet, <span appBasicHighlight>consectetur adipisicing.</span></p>
-      <p appBasicHighlight>Lorem ipsum dolor.</p>
-
-      <p>Более правильный подход к стилизации элемента путем создания кастомной атрибутной директивы заключается в стилизации
-        элемента не напрямую, а используя ангуляровский класс <em appBetterHighlight>Renderer2</em></p>
-      <p>Lorem <span appBetterHighlight>custom attribute directive example</span> dolor</p>
-      <p>Lorem <span appAnotherHighlight>ipsum</span> dolor sit.</p>
-      <p>Пример атрибутной директивы с property binging <span [appAnotherHighlight]="'pink'" bgHover="yellow">ipsum</span> dolor sit.</p>
-      <!--Если передаваемый параметр строка, то можно писать упрощенно без квадратных скобок вот так bgHover="yellow"-->
-      <!--Если алиас совпадает с именем директивы, то можно заключить имя дериктивы в квадратные скобки. Так можн
-      делать для одного свойтва. В примере выше [appAnotherHighlight] одновременно является и именем директивы и алиасо
-      заданнов в декораторе @Input('appAnotherHighlight') в файле создающем директиву another-highlight.directive.ts-->
-    </div>
-  </div>
-  <div class="row">
     <div class="col-12">
-      <button class="btn btn-primary" (click)="onToggleNumber()">toggle numbers</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <div *ngIf="onlyOdds">
-        <p appBasicHighlight *ngFor="let odd of odds">{{odd}}</p>
-      </div>
-      <ng-template [ngIf]="!onlyOdds">
-        <!--
-          При использованиии ngIf в шаблоне дерективу нужно в квадратные скобки обернуть
-          Я так понял, ангуляр для дериктив со звездочкой создает <ng-template> который потом превращается в DOM
-          Исходя из этого можно создавать свою структурную директиву, так как сделано в этом пимере в файле
-          src/app/my-directives/unless.directive.ts
-        -->
-        <div>
-          <p [appAnotherHighlight]="'lightyellow' " *ngFor="let even of evens">{{even}}</p>
-        </div>
-      </ng-template>
-    </div>
-    <div class="col-6">
-      <h4>В этой колонке представлен пример кастомной структурной директивы (custom structural directive) <b>*appUnless</b></h4>
-      <div *ngIf="onlyOdds">
-        <p appBasicHighlight *ngFor="let odd of odds">{{odd}}</p>
-      </div>
-      <div *appUnless="onlyOdds">
-        <p [appAnotherHighlight]="'lightyellow' " *ngFor="let even of evens">{{even}}</p>
-      </div>
+      <ul class="list-group">
+        <li
+          class="list-group-item d-flex justify-content-between"
+          *ngFor="let server of servers"
+          [ngClass]="getStatusClasses(server)">
+          <span><strong>{{ server.name }}</strong> | {{ server.instanceType }} | {{ server.started }}</span>
+          <span
+            class="badge"
+            [ngClass]="server.status === 'offline' ? 'badge-secondary' :
+                       server.status === 'stable' ? 'badge-success' :
+                       server.status === 'critical' ? 'badge-danger' : ''"
+          >
+            {{ server.status }}
+          </span>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
