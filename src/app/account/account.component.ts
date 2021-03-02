@@ -17,5 +17,8 @@ export class AccountComponent {
   onSetTo(status: string): void {
     this.accountsService.updateStatus(this.id, status);
     // this.loggingService.logStatusChange(status);
+    this.accountsService.statusUpdated.emit(status); // тут я могу емитит эвент, которое объявлено в сервисе.
+    // таким образом через сервисы, я могу в любом компоненте заимитеть эвент.
+    // Теперь я в любом компоненте, который использует этот же сервис, могу подписаться на этот событие.
   }
 }

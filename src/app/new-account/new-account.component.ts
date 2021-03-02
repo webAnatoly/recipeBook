@@ -10,7 +10,17 @@ import { AccountsService } from '../accounts.service';
 })
 export class NewAccountComponent {
 
-  constructor(private loggingService: LoggingService, private accountsService: AccountsService) {}
+  constructor(private loggingService: LoggingService, private accountsService: AccountsService) {
+    this.accountsService.statusUpdated.subscribe(
+      (status: string) => alert(`New Status ${status}`)
+    );
+    /* подписываюсь на событие, которое срабатывает в компоненте account.component
+    вообще не важно где оно срабатывает, оно может срабатывать в нескольких компонентах
+    Цель этого примера показать, что можно обмениваться данными между соседними компонентами через общий сервис,
+    с помощью EventEmitter.
+     */
+
+  }
   /*
   Не забываем что запись вида constructor(private anyProperty: any) {}
   Это короткий вариант записи

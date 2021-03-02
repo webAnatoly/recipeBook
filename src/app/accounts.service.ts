@@ -1,5 +1,6 @@
+import { Injectable, EventEmitter } from '@angular/core';
+
 import { LoggingService } from './logging.service';
-import { Injectable } from '@angular/core';
 
 /* if you inject a service into something, this something needs to have some metadata attached to it.
    Такие метаданные даем ангуляру с помощью директивы @Injectable
@@ -34,6 +35,8 @@ export class AccountsService {
       status: 'unknown'
     }
   ];
+
+  statusUpdated = new EventEmitter<string>();
 
   constructor(private loggingService: LoggingService) { }
 
