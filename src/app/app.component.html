@@ -25,4 +25,16 @@
       заданнов в декораторе @Input('appAnotherHighlight') в файле создающем директиву another-highlight.directive.ts-->
     </div>
   </div>
+  <div class="row">
+    <div class="col-12">
+      <div *ngIf="onlyOdds">
+        <p appBasicHighlight *ngFor="let odd of odds">{{odd}}</p>
+      </div>
+      <ng-template [ngIf]="!onlyOdds">
+        <div>
+          <p [appAnotherHighlight]="'lightyellow' " *ngFor="let even of evens">{{even}}</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
 </div>

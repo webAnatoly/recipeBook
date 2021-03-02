@@ -12,4 +12,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   name = 'Tolik';
+  onlyOdds = false;
+  evens = [2, 4, 6, 8];
+  odds = [1, 3, 5];
 }
