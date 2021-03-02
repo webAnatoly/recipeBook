@@ -27,10 +27,12 @@
   </div>
   <div class="row">
     <div class="col-12">
+      <button class="btn btn-primary" (click)="onToggleNumber()">toggle numbers</button>
       <div *ngIf="onlyOdds">
         <p appBasicHighlight *ngFor="let odd of odds">{{odd}}</p>
       </div>
       <ng-template [ngIf]="!onlyOdds">
+        <!--При использованиии ngIf в шаблоне дерективу нужно в квадратные скобки обернуть-->
         <div>
           <p [appAnotherHighlight]="'lightyellow' " *ngFor="let even of evens">{{even}}</p>
         </div>

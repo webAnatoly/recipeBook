@@ -15,4 +15,8 @@ export class AppComponent {
   onlyOdds = false;
   evens = [2, 4, 6, 8];
   odds = [1, 3, 5];
+
+  onToggleNumber(): void {
+    this.onlyOdds = !this.onlyOdds;
+  }
 }
