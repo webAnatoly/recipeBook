@@ -9,8 +9,6 @@ import { AnotherHighlightDirective } from './my-directives/another-highlight.dir
 import { UnlessDirective } from './my-directives/unless.directive';
 import { AccountComponent } from './account/account.component';
 import { NewAccountComponent } from './new-account/new-account.component';
-import { AccountsService } from './accounts.service';
-import { LoggingService } from './logging.service';
 
 /*
 FormsModule позволяет использовать директиву [(ngModel)] в шаблоне, ну и видимо еще что-то связанное с формами.
@@ -33,7 +31,6 @@ FormsModule позволяет использовать директиву [(ngM
     Надеюсь я правильно понял концепцию NgModules.
     */
   ],
-  providers: [AccountsService, LoggingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

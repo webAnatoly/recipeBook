@@ -19,7 +19,7 @@ import { LoggingService } from './logging.service';
   Если я правильно понял из курса, то ангуляр рекомендует всем сервисам добавлять декоратор @Injectable даже если
   не планируется в данный сервис что-то инжектить. Ну на всякий случай, вдруг в будущем запланируется.
 */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AccountsService {
   accounts = [
     {
