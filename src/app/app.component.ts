@@ -1,37 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AccountsService } from './accounts.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'] // здесь массив, потому-что можно несколько файлов стилей подключать, если надо.
+  styleUrls: ['./app.component.scss'], // здесь массив, потому-что можно несколько файлов стилей подключать, если надо.
+  providers: [AccountsService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   name = 'Tolik';
   onlyOdds = false;
   evens = [2, 4, 6, 8];
   odds = [1, 3, 5];
 
-  accounts = [
-    {
-      name: 'Master Account',
-      status: 'active'
-    },
-    {
-      name: 'Testaccount',
-      status: 'inactive'
-    },
-    {
-      name: 'Hidden Account',
-      status: 'unknown'
-    }
-  ];
+  accounts: {name: string, status: string}[] = [];
 
-  onAccountAdded(newAccount: {name: string, status: string}): void {
-    this.accounts.push(newAccount);
-  }
+  constructor(private accountsService: AccountsService) {}
 
-  onStatusChanged(updateInfo: {id: number, newStatus: string}): void {
-    this.accounts[updateInfo.id].status = updateInfo.newStatus;
+  ngOnInit(): void {
+    this.accounts = this.accountsService.accounts;
   }
 
   onToggleNumber(): void {
