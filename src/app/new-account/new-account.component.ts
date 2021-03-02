@@ -1,16 +1,16 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoggingService } from '../logging.service';
+import { AccountsService } from '../accounts.service';
 
 @Component({
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.scss'],
-  providers: [LoggingService],
+  providers: [LoggingService, AccountsService],
 })
 export class NewAccountComponent {
-  @Output() accountAdded = new EventEmitter<{name: string, status: string}>();
 
-  constructor(private loggingService: LoggingService) {}
+  constructor(private loggingService: LoggingService, private accountsService: AccountsService) {}
   /*
   Не забываем что запись вида constructor(private anyProperty: any) {}
   Это короткий вариант записи
@@ -45,11 +45,26 @@ export class NewAccountComponent {
   */
 
   onCreateAccount(accountName: string, accountStatus: string): void {
-    this.accountAdded.emit({
-      name: accountName,
-      status: accountStatus
-    });
-    // console.log('A server status changed, new status: ' + accountStatus);
+    this.accountsService.addAccount(accountName, accountStatus);
     this.loggingService.logStatusChange(accountStatus);
   }
 }
+
+/*
+
+В этом примере мы создали сервис accounts и здесь используем этот сервис для добавления новых аккаунтов в массив.
+Всё работает, но не так как надо. Загвоздка в том, что новые аккаунта добавляются в массив this.accountsService.accounts
+но этот массив ндоступен из вне потому что ангуляровский инжектор использует hierarchical injector
+и при инжектировании в компонент сервиса он создает отдельный инстанс этого сервия для данного компонента и всех сложенных
+компонентов.
+
+В нашем же здесь случае мы в каждый компонет и в <new-account> и в <account> заинжектировали один и тот же сервис, но
+ангуляр для каждого компонента создал свой инстанс со своим объектом this.accountsService.accounts и поэтому при обновлении
+объекта из одного компонента, он остается нетронутым в другом.
+
+Чтобы был один инстанс сервиса для всех компонентов, нужно его инжектировать на уровень выше. Если нужно чтобы инстанс
+сервиса был доступен по всему приложению, то сервис нужно провайдить на самом верхнем уровне в иерархии компонетов(модулей)
+
+Самый верхний уровень это AppModule
+
+ */
