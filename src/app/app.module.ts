@@ -7,6 +7,8 @@ import { BasicHighlightDirective } from './my-directives/basic-highlight.directi
 import { BetterHighlightDirective } from './my-directives/better-highlight.directive';
 import { AnotherHighlightDirective } from './my-directives/another-highlight.directive';
 import { UnlessDirective } from './my-directives/unless.directive';
+import { AccountComponent } from './account/account.component';
+import { NewAccountComponent } from './new-account/new-account.component';
 
 /*
 FormsModule позволяет использовать директиву [(ngModel)] в шаблоне, ну и видимо еще что-то связанное с формами.
@@ -19,6 +21,8 @@ FormsModule позволяет использовать директиву [(ngM
     BetterHighlightDirective,
     AnotherHighlightDirective,
     UnlessDirective,
+    AccountComponent,
+    NewAccountComponent,
   ],
   imports: [
     BrowserModule,
