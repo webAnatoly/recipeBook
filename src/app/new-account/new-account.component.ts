@@ -67,4 +67,12 @@ export class NewAccountComponent {
 
 Самый верхний уровень это AppModule
 
+--
+
+Вот еще на английском пояснение из курса
+The Angular depency injector actually is a hierarchical injector, that means that if we provide a service in some place of our app,
+let's say on one component, the Angular framework knows how to create an instance of that service for this component and important,
+all its child componets and actually this component and all its child components and the child of the child components will receive
+the same instance of the service.
+
  */
