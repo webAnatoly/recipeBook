@@ -2,9 +2,15 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <ul class="nav nav-tabs">
-        <li role="presentation" class="nav-item"><a routerLink="/" class="nav-link active">Home</a></li>
-        <li role="presentation" class="nav-item"><a routerLink="/servers" class="nav-link">Servers</a></li>
-        <li role="presentation" class="nav-item"><a [routerLink]="['/users']" class="nav-link">Users</a></li>
+        <!-- routerLinkActive="active" добавляет css класс в активный роутер
+        [routerLinkActiveOptions]="{exact: true}" конфигурация активной ссылки, exact: true - значит точное соответствие-->
+        <li role="presentation" class="nav-item">
+          <a routerLink="/"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}"
+             class="nav-link">Home</a></li>
+        <li role="presentation" class="nav-item"><a routerLink="/servers" routerLinkActive="active" class="nav-link">Servers</a></li>
+        <li role="presentation" class="nav-item"><a [routerLink]="['/users']" routerLinkActive="active" class="nav-link">Users</a></li>
       </ul>
     </div>
   </div>
