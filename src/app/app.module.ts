@@ -16,6 +16,7 @@ import { ServersService } from './servers/servers.service';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'users/:id/:name', component: UserComponent }, // добавляем id и name параметры роутеру, которые будет доступны в компоненте
   { path: 'servers', component: ServersComponent },
 ];
 
