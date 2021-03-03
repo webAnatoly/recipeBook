@@ -18,7 +18,7 @@
         <span class="arrow-down" [ngStyle]="{'transform': isDropdownVisible ? 'rotate(90deg)' : ''}"></span>
       </button>
       <ul class="recipe-detail-dropdown-menu" *ngIf="isDropdownVisible">
-        <li><a href="#">To Shopping List</a></li>
+        <li><a href="#" (click)="onClickToShoppingList()">To Shopping List</a></li>
         <li><a href="#">Edit Recipe</a></li>
         <li><a href="#">Delete Recipe</a></li>
       </ul>
