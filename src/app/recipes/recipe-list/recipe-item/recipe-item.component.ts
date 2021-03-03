@@ -8,7 +8,7 @@ import { RecipeService } from '../../recipe.service';
   styleUrls: ['./recipe-item.component.scss']
 })
 export class RecipeItemComponent implements OnInit {
-  @Input() recipe: Recipe = {name: '', description: '', imagePath: ''};
+  @Input() recipe: Recipe = {name: '', description: '', imagePath: '', ingredients: [{name: '', amount: 0}] };
 
   constructor(private recipeService: RecipeService) { }
 

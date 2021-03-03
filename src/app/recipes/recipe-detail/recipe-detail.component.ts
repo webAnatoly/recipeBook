@@ -8,7 +8,7 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
   isDropdownVisible = false;
-  @Input() recipeDetail: Recipe = {name: '', description: '', imagePath: ''};
+  @Input() recipeDetail: Recipe = {name: '', description: '', imagePath: '', ingredients: [{name: '', amount: 0}] };
 
   constructor() { }
 
