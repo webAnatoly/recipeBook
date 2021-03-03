@@ -27,8 +27,10 @@ about the currently active route.
 
   onReloadPage(): void {
     // Пример навигации по относитльному пути
-    this.router.navigate(['servers'], {relativeTo: this.route}).catch(error => console.log(error));
-    /*relativeTo - here we define relative to which route this link should be loaded
+    this.router.navigate(['../servers'], {relativeTo: this.route}).catch(error => console.error(error));
+    /*
+    {relativeTo: this.route} - объект с конфигом
+    relativeTo - here we define relative to which route this link should be loaded
     and by default, this is always the root domain "/" */
 
     /*

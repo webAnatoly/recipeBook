@@ -16,6 +16,6 @@ export class HomeComponent implements OnInit {
   /* navigation programmatically example */
   onLoadServers(): void {
     /* здесь например могут быть какие-то комплексные вычисления после которых мы хотим перейти на страницу */
-    this.router.navigate(['/servers']).catch(error => console.log(error));
+    this.router.navigate(['/servers']).catch(error => console.error(error));
   }
 }
