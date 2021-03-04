@@ -12,16 +12,22 @@ import { UserComponent } from './users/user/user.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
 import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'users', component: UsersComponent, children: [
-      { path: ':id/:name', component: UserComponent }, // добавляем id и name параметры роутеру, которые будет доступны в компоненте
-    ]},
+      { path: ':id/:name', component: UserComponent }] // добавляем id и name параметры роутеру, которые будет доступны в компоненте
+  },
   { path: 'servers', component: ServersComponent, children: [
       { path: ':id', component: ServerComponent },
-      { path: ':id/edit', component: EditServerComponent },
-    ]},
+      { path: ':id/edit', component: EditServerComponent }]
+  },
+  { path: 'not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/not-found'}
+  // ** - this is the wildcard route which means catch all paths you don't know and the order is super important here.
+  // path: '**', redirectTo: '/not-found'
+  // Должен быть на последнем мессте в массиве, потому что ангуляр парсит роутеры по-порядку от начала массива.
 ];
 
 @NgModule({
@@ -32,7 +38,8 @@ const appRoutes: Routes = [
     ServersComponent,
     UserComponent,
     EditServerComponent,
-    ServerComponent
+    ServerComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
