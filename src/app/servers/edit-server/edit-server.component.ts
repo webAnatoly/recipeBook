@@ -12,6 +12,7 @@ export class EditServerComponent implements OnInit {
   server: {id: number, name: string, status: string} = {id: 0, name: '', status: ''};
   serverName = '';
   serverStatus = '';
+  allowEdit = false;
 
   constructor(private serversService: ServersService,
               private route: ActivatedRoute) { }
@@ -20,7 +21,7 @@ export class EditServerComponent implements OnInit {
   ?query параметры и #fragment из url*/
 
   ngOnInit(): void {
-    this.server = this.serversService.getServer(1);
+    this.server = this.serversService.getServer(+this.route.snapshot.params.id);
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
 
@@ -34,6 +35,7 @@ export class EditServerComponent implements OnInit {
     * В этом случае при update компонента обсервер будет эмитить значения, и если они изменились мы получим новые значения */
     this.route.queryParams.subscribe((queryParam) => {
       console.log('queryParam', queryParam);
+      this.allowEdit = queryParam.allowEdit === '1';
     });
     this.route.fragment.subscribe((fragment) => {
       console.log('fragment', fragment);
