@@ -12,7 +12,9 @@ import { EditServerComponent } from './servers/edit-server/edit-server.component
 import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AppRoutingModule } from './app-routing.module'; // наш кастомный модуль
+import { AppRoutingModule } from './app-routing.module';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { OverlayComponent } from './shared/components/overlay/overlay.component'; // наш кастомный модуль
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AppRoutingModule } from './app-routing.module'; // наш кастом�
     UserComponent,
     EditServerComponent,
     ServerComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SpinnerComponent,
+    OverlayComponent
   ],
   imports: [
     BrowserModule,
