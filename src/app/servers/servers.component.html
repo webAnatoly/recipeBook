@@ -17,9 +17,20 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <button class="btn btn-primary" (click)="onReloadPage()">Reload Page</button>
-    <app-edit-server></app-edit-server>
-    <hr>
+    <router-outlet></router-outlet> <!--в этом router-outlet будут выводиться компоненты для путей определенных в
+    конфиге роутера в файле app.module.ts как суб-роутеры.
+
+     { path: 'servers', component: ServersComponent, children: [
+        { path: ':id', component: ServerComponent },
+        { path: ':id/edit', component: EditServerComponent },
+      ]},
+
+     In this route-outlet, all the user-related child routes will be loaded.
+    -->
+
+<!--    <button class="btn btn-primary" (click)="onReloadPage()">Reload Page</button>-->
+<!--    <app-edit-server></app-edit-server>-->
+<!--    <hr>-->
 <!--    <app-server></app-server>-->
   </div>
 </div>

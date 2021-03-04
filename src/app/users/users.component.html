@@ -11,7 +11,16 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <app-user></app-user>
+<!--    <app-user></app-user>-->
+    <router-outlet></router-outlet> <!--в этом router-outlet будут выводиться компоненты для путей определенных в
+    конфиге роутера в файле app.module.ts как суб-роутеры.
+
+    { path: 'users', component: UsersComponent, children: [
+       { path: ':id/:name', component: UserComponent },
+     ]},
+
+    In this route-outlet, all the user-related child routes will be loaded.
+    -->
   </div>
 </div>
 
