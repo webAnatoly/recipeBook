@@ -14,8 +14,13 @@ export class HomeComponent implements OnInit {
   }
 
   /* navigation programmatically example */
-  onLoadServers(): void {
+  onLoadServer(id: number): void {
     /* здесь например могут быть какие-то комплексные вычисления после которых мы хотим перейти на страницу */
-    this.router.navigate(['/servers']).catch(error => console.error(error));
+    this.router.navigate(['/servers', id, 'edit'], {
+      queryParams: {
+        allowEdit: '1'
+      },
+      fragment: 'loading',
+    }).catch(error => console.error(error));
   }
 }
