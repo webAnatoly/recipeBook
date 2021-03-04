@@ -18,6 +18,7 @@ const appRoutes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'users/:id/:name', component: UserComponent }, // добавляем id и name параметры роутеру, которые будет доступны в компоненте
   { path: 'servers', component: ServersComponent },
+  { path: 'servers/:id/edit', component: EditServerComponent },
 ];
 
 @NgModule({
