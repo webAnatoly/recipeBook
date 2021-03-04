@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class AuthGuardService implements CanActivate, CanActivateChild {
 
   constructor(private authService: AuthService,
               private router: Router) { }
 
+
+  /* Делает проверки, которые мы хотим и если всё ок, то активирует компоненты по указанному роуту */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
@@ -26,6 +28,14 @@ export class AuthGuardService implements CanActivate {
         }
       }
     );
+  }
+
+  // Метод для проверки (активации) вложенных путей. Т.е. идея такая же как и у canActivate, только для вложеных роутеров
+  canActivateChild(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
+  {
+    return this.canActivate(route, state);
   }
 }
 

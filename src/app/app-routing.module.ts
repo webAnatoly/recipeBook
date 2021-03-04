@@ -14,9 +14,13 @@ const appRoutes: Routes = [
   { path: 'users', component: UsersComponent, children: [
       { path: ':id/:name', component: UserComponent }] // добавляем id и name параметры роутеру, которые будет доступны в компоненте
   },
-  { path: 'servers', canActivate: [AuthGuardService], component: ServersComponent, children: [
+  { path: 'servers',
+    // canActivate: [AuthGuardService],
+    canActivateChild: [AuthGuardService],
+    component: ServersComponent, children: [
       { path: ':id', component: ServerComponent },
-      { path: ':id/edit', component: EditServerComponent }]
+      { path: ':id/edit', component: EditServerComponent }
+    ]
   },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found'}
