@@ -1,3 +1,20 @@
+/*
+Этот сервис выполняет роль так называемого Route Guards
+
+So basically functionality, logic, code which is executed before a route is loaded or once you want to leave a route.
+
+Route Guards это функционал, логика, код которые выполняются до того как маршруты и соответствующие им компоненты
+будут созданы. Это позволяет делать проверку на авторизацию не в каждом компоненте,
+а для указанного маршрута роутера и для всех его вложенных маршрутов и компонентов.
+
+Т.е до того, как роутер отрендерит свои маршруты, делается проверка и если проверка возвращает true, то маршрут строится,
+компоненты будут доступны по маршруту. В противном случае, если проверка возвращает false, то данный маршрут просто не
+будет доступен, вместе со всеми компонентами.
+
+Эти проверки делаются путем реализации методов CanActivate - для корневых роутов и CanActivateChild - для вложенных роутов.
+
+ */
+
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
