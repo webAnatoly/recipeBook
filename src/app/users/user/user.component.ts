@@ -1,13 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
   user: {id: number, name: string} = {id: 0, name: ''};
+  paramsSubscription!: Subscription; /* проперти в котором храним экземпляр Subscription, чтобы можно было потом отписаться
+  Вообще-то ангуляр сам отписывается от Observable, которые в него встроены, но если мы создаем сами свой Observable и подписываемся
+  на него в компоненте, то нужно подумать и от отписки, чтобы он не висел в памяти. В общем, всё как всегда, зависит от
+  ситуации и от задачи. Главное помнить о том, что можно отписываться.
+
+  Этот пример похож на ситуацию с нативным setInterval(); Если мы не вызовем clearInterval(), во время дестроя
+  компонента, то он продолжить работать. Опять, же если нам нужно такое поведение, то пусть работает, если нужно убивать его
+  вместе с дестроем компонента, то убиваем.
+  */
 
   constructor(private route: ActivatedRoute) { }
   // The ActivatedRoute object we injected will give us access to the id passed in the URL => Selected User
@@ -16,12 +26,14 @@ export class UserComponent implements OnInit {
     this.user.id = this.route.snapshot.params.id;
     this.user.name = this.route.snapshot.params.name;
 
-    this.route.params.subscribe(
+    this.paramsSubscription = this.route.params.subscribe(
       (params: Params) => {
         this.user.id = params.id;
         this.user.name = params.name;
       }
     );
+
+    console.log('this.paramsSubscription', this.paramsSubscription);
 /***************** ПРО Observable ******************
 
     В отличии от this.route.snapshot, который просто объект-"снимок"  this.route.params is observable
@@ -55,4 +67,8 @@ export class UserComponent implements OnInit {
 */
   }
 
+  ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe();
+    console.log(' this.paramsSubscription.unsubscribe()',  this.paramsSubscription);
+  }
 }
