@@ -2,12 +2,12 @@
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
       <a
-        [routerLink]="['/servers', 5, 'edit']"
+        *ngFor="let server of servers"
+        [routerLink]="['/servers', server.id]"
         [queryParams]="{allowEdit: '1'}"
         fragment="loading"
         href="#"
-        class="list-group-item"
-        *ngFor="let server of servers">
+        class="list-group-item">
         {{ server.name }}
       </a>
       <!-- [queryParams]="{allowEdit: '1'}" это роутеровская директива, которая к ссылке добавляет query параметры вида
@@ -20,7 +20,7 @@
     <button class="btn btn-primary" (click)="onReloadPage()">Reload Page</button>
     <app-edit-server></app-edit-server>
     <hr>
-    <app-server></app-server>
+<!--    <app-server></app-server>-->
   </div>
 </div>
 
