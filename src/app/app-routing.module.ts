@@ -8,6 +8,7 @@ import { ServerComponent } from './servers/server/server.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuardService } from './auth-guard.service';
+import { CanDeactivateGuardService } from './servers/edit-server/can-deactivate-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,10 +17,14 @@ const appRoutes: Routes = [
   },
   { path: 'servers',
     // canActivate: [AuthGuardService],
-    canActivateChild: [AuthGuardService],
+    canActivateChild: [AuthGuardService], // Angular run this guard whenever we try to access this path, точнее вложенные роуты
     component: ServersComponent, children: [
       { path: ':id', component: ServerComponent },
-      { path: ':id/edit', component: EditServerComponent }
+      { path: ':id/edit', component: EditServerComponent,
+        canDeactivate: [CanDeactivateGuardService] // Angular run this guard whenever we try to LEAVE this path,
+        // точнее когда мы пытаемся покинуть компонент загруженный по этому пути.
+      }
+
     ]
   },
   { path: 'not-found', component: PageNotFoundComponent },

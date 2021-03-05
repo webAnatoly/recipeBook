@@ -1,21 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CanComponentDeactivate } from './can-deactivate-guard.service';
+import { Observable } from 'rxjs';
+
+/*
+CanComponentDeactivate - our own interface and this one forces us to implement the canDeactivate method
+in this component
+ */
 
 @Component({
   selector: 'app-edit-server',
   templateUrl: './edit-server.component.html',
   styleUrls: ['./edit-server.component.scss']
 })
-export class EditServerComponent implements OnInit {
+export class EditServerComponent implements OnInit, CanComponentDeactivate {
   server: {id: number, name: string, status: string} = {id: 0, name: '', status: ''};
   serverName = '';
   serverStatus = '';
   allowEdit = false;
+  changesSaved = false;
 
   constructor(private serversService: ServersService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
 /*  private route: ActivatedRoute - инжектируем роутеровский сервис ActivatedRoute, чтобы с его помощью получать
   ?query параметры и #fragment из url*/
@@ -44,6 +53,30 @@ export class EditServerComponent implements OnInit {
 
   onUpdateServer(): void {
     this.serversService.updateServer(this.server.id, {name: this.serverName, status: this.serverStatus});
+    this.changesSaved = true;
+    this.router.navigate(['../'], {
+      relativeTo: this.route,
+      queryParamsHandling: 'preserve',
+    }).catch(error => console.error(error));
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    // here in canDeactivate, we now provide the actual logic deciding on whether we are allowed to leave or not.
+    // This logic will be run whenever the CanDeactivateGuard is checked by the Angular router.
+
+    // Если нет прав на редактирование, то можно безболезненно покидать компонент
+    if (!this.allowEdit) {
+      return true;
+    }
+
+    if ((this.serverName !== this.server.name || this.serverStatus !== this.server.status)
+      && !this.changesSaved ) {
+      const message = `Do you want to discard the changes?`;
+      return confirm(message);
+    } else {
+      return true;
+    }
+
   }
 
 }
