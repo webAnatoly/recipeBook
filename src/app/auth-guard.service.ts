@@ -19,6 +19,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { GlobalStateService } from './shared/global-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,8 @@ import { AuthService } from './auth.service';
 export class AuthGuardService implements CanActivate, CanActivateChild {
 
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private globalState: GlobalStateService) { }
 
 
   /* Делает проверки, которые мы хотим и если всё ок, то активирует компоненты по указанному роуту */
@@ -34,17 +36,24 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
   {
-    return this.authService.isAuthenticated().then(
-      (authenticated: boolean) => {
+    // Тут мы вызываем наш сервис проверки авторизирован ли пользоватль. Наш сервис возвращает Promise.
+    this.globalState.startShowSpinner();
+    return this.authService.isAuthenticated()
+      .then((authenticated: boolean) => {
         if (authenticated) {
+          this.globalState.finishShowSpinner();
           return true;
         } else {
           this.router.navigate(['/']).catch(error => console.error(error));
+          this.globalState.finishShowSpinner();
           return false;
           // After navigation away, you must retun false - though you will prevent the original navigation from happening anyways.
         }
-      }
-    );
+      }).catch((error) => {
+        this.globalState.finishShowSpinner();
+        console.error('Promise caught error', error);
+        return false;
+    });
   }
 
   // Метод для проверки (активации) вложенных путей. Т.е. идея такая же как и у canActivate, только для вложеных роутеров

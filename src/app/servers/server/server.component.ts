@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GlobalStateService } from '../../shared/global-state.service';
 
 @Component({
   selector: 'app-server',
@@ -14,7 +15,8 @@ export class ServerComponent implements OnInit {
 
   constructor(private serversService: ServersService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private globalState: GlobalStateService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -26,6 +28,7 @@ export class ServerComponent implements OnInit {
   }
 
   onEdit(): void {
+    this.globalState.startShowSpinner();
     if (this.allowEdit) {
       this.router.navigate(['edit'], {
         relativeTo: this.route,

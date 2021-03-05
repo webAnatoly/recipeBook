@@ -14,7 +14,11 @@ export class AuthService {
   isAuthenticated(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(this.loggedIn);
+        try {
+          resolve(this.loggedIn);
+        } catch (error) {
+          reject(error);
+        }
       }, 800);
     });
   }
