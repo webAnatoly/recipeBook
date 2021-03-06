@@ -63,6 +63,10 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes),
+    // RouterModule.forRoot(appRoutes, {useHash: true}), // включает режим с # перед нашими путями в URL
+    // For instance, if you call location.go('/foo'), the browser's URL will become example.com#/foo.
+    // Я так понимаю эта опция полезна, тогда, когда нет возможности настроить сервер, чтобы он всегда возвращал index.html
+    // see more https://angular.io/api/common/HashLocationStrategy#description
   ],
   exports: [RouterModule]
   /*Exports simply tells Angular, hey from this module, if I were to add this module to the imports of another module,
