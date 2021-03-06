@@ -19,11 +19,16 @@ export class ServerComponent implements OnInit {
               private globalState: GlobalStateService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-        this.server = this.serversService.getServer(+params.id);
-    });
+    // this.route.params.subscribe((params) => {
+    //     this.server = this.serversService.getServer(+params.id);
+    // });
     this.route.queryParams.subscribe((queryParams) => {
       this.allowEdit = Boolean(Number(queryParams.allowEdit));
+    });
+
+    // Пример использование Resolver'a роутера получающего данные в процессе навигации see more https://angular.io/api/router/Resolve
+    this.route.data.subscribe(data => {
+      this.server = data.ourServer;
     });
   }
 
