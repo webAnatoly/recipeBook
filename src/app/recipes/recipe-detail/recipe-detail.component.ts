@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RecipeDetailComponent implements OnInit {
   isDropdownVisible = false;
-  @Input() recipeDetail: Recipe = {name: '', description: '', imagePath: '', ingredients: [{name: '', amount: 0}] };
+  recipeDetail: Recipe = {name: '', description: '', imagePath: '', ingredients: [{name: '', amount: 0}] };
 
   constructor(private recipeService: RecipeService,
               private route: ActivatedRoute) { }
