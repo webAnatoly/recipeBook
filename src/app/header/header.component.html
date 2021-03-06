@@ -12,8 +12,8 @@
     <div class="menu-wrapper">
       <div class="menu-container">
         <ul [ngClass]="{'show-mob-menu': isMobileMenuVisible}">
-          <li><a [routerLink]="'recipes'">Recipes</a></li>
-          <li><a [routerLink]="'shopping-list'">Shopping List</a></li>
+          <li routerLinkActive="active"><a routerLink="recipes">Recipes</a></li>
+          <li routerLinkActive="active"><a routerLink="shopping-list">Shopping List</a></li>
         </ul>
       </div>
       <div class="right-menu-container">

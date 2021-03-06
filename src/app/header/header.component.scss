@@ -74,6 +74,20 @@
 
         & li {
           margin: .2rem 2rem;
+          user-select: none;
+
+          & > a {
+            user-select: none;
+          }
+
+          @media only screen and (min-width: $bp-small) {
+            transition: font-size .1s ease-out;
+          }
+
+          &.active {
+            font-weight: 700;
+            font-size: 120%;
+          }
         }
       }
 
