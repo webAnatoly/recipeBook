@@ -7,7 +7,6 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
   providedIn: 'root'
 })
 export class RecipeService {
-  recipeSelected = new EventEmitter<Recipe>();
 
   private recipes: Recipe[] = [
     new Recipe(
@@ -32,6 +31,16 @@ export class RecipeService {
 
   getRecipes(): Recipe[] {
     return this.recipes.slice(); // slice() вернёт новый массив
+  }
+
+  getRecipe(id: number): Recipe {
+    const recipe: Recipe = {name: '', description: '', imagePath: '', ingredients: [{ name: '', amount: 0 }]};
+
+    if (this.recipes[id]) {
+      return JSON.parse(JSON.stringify(this.recipes[id])); // возвращаем копию объекта Recipe
+    }
+
+    return recipe;
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]): void {

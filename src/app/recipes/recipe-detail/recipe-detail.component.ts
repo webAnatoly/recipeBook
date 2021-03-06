@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,9 +12,15 @@ export class RecipeDetailComponent implements OnInit {
   isDropdownVisible = false;
   @Input() recipeDetail: Recipe = {name: '', description: '', imagePath: '', ingredients: [{name: '', amount: 0}] };
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.recipeDetail = this.recipeService.getRecipe(+this.route.snapshot.params.id);
+
+    this.route.params.subscribe((params) => {
+      this.recipeDetail = this.recipeService.getRecipe(+params.id);
+    });
   }
 
   onClickDropdown(): void {

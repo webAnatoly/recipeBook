@@ -1,8 +1,9 @@
 <a style="cursor: pointer" class="card card--recipe-list-margin"
-  (click)="onSelected()">
+   [routerLink]="['/recipes', recipeId]">
   <div class="card-content">
     <h4>{{recipe.name}}</h4>
     <p>{{recipe.description}}</p>
+    <p>Recipe ID: ({{recipeId}})</p>
   </div>
   <div class="card__img">
     <img [src]="recipe.imagePath" alt="{{recipe.name}}">
