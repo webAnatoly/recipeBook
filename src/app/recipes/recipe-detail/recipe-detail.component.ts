@@ -11,15 +11,15 @@ import { ActivatedRoute } from '@angular/router';
 export class RecipeDetailComponent implements OnInit {
   isDropdownVisible = false;
   recipeDetail: Recipe = {name: '', description: '', imagePath: '', ingredients: [{name: '', amount: 0}] };
+  recipeID = 0;
 
   constructor(private recipeService: RecipeService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.recipeDetail = this.recipeService.getRecipe(+this.route.snapshot.params.id);
-
     this.route.params.subscribe((params) => {
-      this.recipeDetail = this.recipeService.getRecipe(+params.id);
+      this.recipeID = +params.id;
+      this.recipeDetail = this.recipeService.getRecipe(this.recipeID);
     });
   }
 
