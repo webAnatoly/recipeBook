@@ -14,7 +14,8 @@ import { ServersService } from './servers/servers.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
-import { OverlayComponent } from './shared/components/overlay/overlay.component'; // наш кастомный модуль
+import { OverlayComponent } from './shared/components/overlay/overlay.component';
+import { ErrorPageComponent } from './error-page/error-page.component'; // наш кастомный модуль
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OverlayComponent } from './shared/components/overlay/overlay.component'
     ServerComponent,
     PageNotFoundComponent,
     SpinnerComponent,
-    OverlayComponent
+    OverlayComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

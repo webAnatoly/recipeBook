@@ -9,6 +9,7 @@ import { EditServerComponent } from './servers/edit-server/edit-server.component
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuardService } from './auth-guard.service';
 import { CanDeactivateGuardService } from './servers/edit-server/can-deactivate-guard.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
 
     ]
   },
-  { path: 'not-found', component: PageNotFoundComponent },
+  // { path: 'not-found', component: PageNotFoundComponent },
+  { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not fount'} },
   { path: '**', redirectTo: '/not-found'}
   // ** - this is the wildcard route which means catch all paths you don't know and the order is super important here.
   // path: '**', redirectTo: '/not-found'
@@ -48,6 +50,13 @@ const appRoutes: Routes = [
   if the auth guard canActivate method returns true in the end which will only happen if in the auth service,
   loggedIn is set to true.
    */
+
+  /* Static data
+  The data property in the route is a place to store arbitrary data associated with this specific route.
+  The data property is accessible within each activated route. Use it to store items such as page titles,
+  breadcrumb text, and other read-only, static data. https://angular.io/guide/router
+  You can use the [resolve guard](https://angular.io/guide/router-tutorial-toh#resolve-guard) to retrieve dynamic data.
+  */
 ];
 
 @NgModule({
