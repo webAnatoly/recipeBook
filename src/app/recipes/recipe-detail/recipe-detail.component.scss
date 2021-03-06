@@ -45,11 +45,17 @@
       font-size: 80%;
 
       & > li {
-        padding: .5rem 0 .5rem 1rem;
+        padding: .5rem 0 .5rem 0;
         height: 3rem;
         border: 1px solid transparent;
         display: flex;
         align-items: center;
+
+        & a {
+          cursor: pointer;
+          flex: 1 1 100%;
+          padding-left: 1rem;
+        }
 
         &:hover {
           border: 1px solid #007bff;
