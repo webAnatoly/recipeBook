@@ -1,5 +1,7 @@
 <a style="cursor: pointer" class="card card--recipe-list-margin"
-   [routerLink]="[recipeId]">
+   [routerLink]="[recipeId]"
+   routerLinkActive="card--active"
+>
   <div class="card-content">
     <h4>{{recipe.name}}</h4>
     <p>{{recipe.description}}</p>
