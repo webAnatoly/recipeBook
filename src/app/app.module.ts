@@ -15,6 +15,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 /*
 FormsModule позволяет использовать директиву [(ngModel)] в шаблоне, ну и видимо еще что-то связанное с формами.
@@ -34,6 +35,7 @@ FormsModule позволяет использовать директиву [(ngM
     ShoppingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
+    RecipeEditComponent,
   ],
   imports: [
     BrowserModule,
