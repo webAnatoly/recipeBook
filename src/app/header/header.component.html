@@ -1,7 +1,7 @@
 <nav class="nav">
   <div class="nav-container">
     <div class="logo">
-      <a href="#" class="">Recipe Book</a>
+      <a [routerLink]="'/'">Recipe Book</a>
     </div>
 
     <div class="btn nav__mob-menu-btn" role="button" (click)="onClickMobileMenu()">
@@ -12,8 +12,8 @@
     <div class="menu-wrapper">
       <div class="menu-container">
         <ul [ngClass]="{'show-mob-menu': isMobileMenuVisible}">
-          <li><a href="#" (click)="onSelect('recipe')">Recipes</a></li>
-          <li><a href="#" (click)="onSelect('shopping-list')">Shopping List</a></li>
+          <li><a [routerLink]="'recipes'">Recipes</a></li>
+          <li><a [routerLink]="'shopping-list'">Shopping List</a></li>
         </ul>
       </div>
       <div class="right-menu-container">

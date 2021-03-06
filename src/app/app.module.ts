@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
@@ -38,6 +39,7 @@ FormsModule позволяет использовать директиву [(ngM
     Так как app.module.ts является корневым компонентом, то дериктивы из FormsModule будут доступны во всём приложении.
     Надеюсь я правильно понял концепцию NgModules.
     */
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
