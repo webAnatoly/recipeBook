@@ -27,6 +27,11 @@ export class MyCustomObservableService {
       let count = 0;
       setInterval(() => {
         observer.next(count);
+        if (count > 4) {
+          observer.error(new Error('Count is greater than ' + count)); // имитация ошибки
+          // whenever an observable throws an error, it cancels, it's done, it will not emit any other value,
+          // it dies so to say and therefore in that case, you also don't need to unsubscribe.
+        }
         count += 1;
         // We can call next here to emit a new value.
         // The observer has a couple of important methods next(), error(), complete()

@@ -49,7 +49,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.secondObsSubscription = this.myCustomObservable.myCustomIntervalObservable.subscribe((value: number) => {
       console.log('my second new observable', value);
-    });
+    }, (error) => {
+        console.log('впойманая ошибка', error);
+      });
   }
 
   ngOnDestroy(): void {
