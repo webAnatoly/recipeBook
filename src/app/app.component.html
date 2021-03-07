@@ -1,10 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <a routerLink="/">Home</a> |
+      <a [routerLink]="['user', 1]">
+        User 1
+      </a>
+      |
+      <a [routerLink]="['user', 2]">
+        User 2
+      </a>
+    </div>
+  </div>
+  <hr/>
+  <div class="row">
+    <div class="col-12">
+      <h5 class="mb-4 mt-2">В этой ветке знакомимся, экспериментируем и упражняемся с Observables.</h5>
+      <div style="border: 1px solid blue; padding: 20px 10px; min-height: 100px; border-radius: 10px;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="container my-container">
   <div class="row">
     <div class="col-12">
     <h1>What are Observables?</h1>
-      <br>
-      <br>
-    <h4>В этой ветке знакомимся, экспериментируем и упражняемся с Observables.</h4>
 
     <p>An observable basically can be thought of as a data source.</p>
 
@@ -72,35 +94,3 @@
   </div>
   </div>
 </div>
-
-
-
-
-===================================
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <ul class="nav nav-tabs">
-        <!-- routerLinkActive="active" добавляет css класс в активный роутер
-        [routerLinkActiveOptions]="{exact: true}" конфигурация активной ссылки, exact: true - значит точное соответствие-->
-        <li role="presentation" class="nav-item">
-          <a routerLink="/"
-             routerLinkActive="active"
-             [routerLinkActiveOptions]="{exact: true}"
-             class="nav-link">Home</a></li>
-        <li role="presentation" class="nav-item"><a routerLink="/servers" routerLinkActive="active" class="nav-link">Servers</a></li>
-        <li role="presentation" class="nav-item"><a [routerLink]="['/users']" routerLinkActive="active" class="nav-link">Users</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 pt-3">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
-<app-overlay *ngIf="isOverlayVisibly">
-  <app-spinner></app-spinner>
-</app-overlay>
