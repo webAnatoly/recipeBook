@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { interval, Observable, Subscription } from 'rxjs';
 import { MyCustomObservableService } from '../shared/my-custom-observable.service';
+import { map } from 'rxjs/operators';
+
+
 // interval() Creates an Observable that emits sequential numbers every specified interval of time
 /*
 Помним, что по Ctrl+Click на функции можно перейти в её определение и там в комментах документация такая же как и на сайте
@@ -35,9 +38,20 @@ export class HomeComponent implements OnInit, OnDestroy {
     to be precise that RxJS package gives us different ways of creating a new observable
     and one of the easiest ways is the interval method, the interval function.
     */
-    this.firstObsSubscription = interval(1000).subscribe((count: number) => {
+    this.firstObsSubscription = interval(1000).pipe(map(data => data + 100)).subscribe((count: number) => {
       console.log('count:', count);
     });
+
+    /*
+    Operators - операторы это функции которыми можно обрабатывать результат возвращаемый Observable и они
+    возвращают эти данные тоже как Observable и дальше мы на них так же подписываемся.
+    Это своего рода прослойка между Observable и .subscribe();
+
+    Для удобного использования у Observable есть метод pipe(), который может группировать операторы, точнее он результат
+    работы одного оперетора передает на вход другому. Ну короче pipe название само за себя говорит. Вот в линуксе тоже
+    есть pipe в командрой строке в виде символа | . Смысл такой же результат выполнения одной программы передать на
+    вход другой.
+    */
 
     // Метод .subscribe() возвращает тип Subscription, который нужен, чтобы отписываться от observable
     // а отписываться иногда нужно, чтобы не было утечки памяти
