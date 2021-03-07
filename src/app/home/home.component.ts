@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     to be precise that RxJS package gives us different ways of creating a new observable
     and one of the easiest ways is the interval method, the interval function.
     */
-    this.firstObsSubscription = interval(1000).subscribe(count => {
+    this.firstObsSubscription = interval(1000).subscribe((count: number) => {
       console.log('count:', count);
     });
 

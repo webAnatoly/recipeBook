@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class MyCustomObservableService {
   constructor() {
     // В качестве тренировки создаем свой observable вызовом статического метода .create() класса Observable
     // метод create() вроде как деприкейтед, но ради тренировки попробуем и так и так посоздавать.
-    this.myCustomIntervalObservable = new Observable((observer: any) => {
+    this.myCustomIntervalObservable = new Observable((observer: Subscriber<number>) => {
       /* Observer - The observer, in the end, is a part that is interested in being informed about new data,
       about errors, or about the observable being completed.
 
