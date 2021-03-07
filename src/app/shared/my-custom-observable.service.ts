@@ -27,6 +27,11 @@ export class MyCustomObservableService {
       let count = 0;
       setInterval(() => {
         observer.next(count);
+        if (count === 3) { // пример вызова метода observer.complete() - этот метод завершает работу обсервера
+          observer.complete(); // when we call complete, the observable will really come to a halt
+          // that is important to understand and to keep in mind,
+          // whenever an observable completes, it really is done, there are no other values emitted.
+        }
         if (count > 4) {
           observer.error(new Error('Count is greater than ' + count)); // имитация ошибки
           // whenever an observable throws an error, it cancels, it's done, it will not emit any other value,

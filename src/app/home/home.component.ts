@@ -47,11 +47,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     are managed by Angular and therefore, you don't need to unsubscribe manually here, Angular will take care about this.
     */
 
-    this.secondObsSubscription = this.myCustomObservable.myCustomIntervalObservable.subscribe((value: number) => {
+    this.secondObsSubscription = this.myCustomObservable.myCustomIntervalObservable
+      .subscribe(
+        (value: number) => {
       console.log('my second new observable', value);
-    }, (error) => {
+      }, (error) => {
         console.log('впойманая ошибка', error);
-      });
+      }, () => {
+          console.log('Observable завершило :) емитить свои данные ');
+        });
   }
 
   ngOnDestroy(): void {
