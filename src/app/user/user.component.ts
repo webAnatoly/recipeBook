@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-user',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserComponent implements OnInit {
   id = 0;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -40,4 +41,8 @@ export class UserComponent implements OnInit {
     */
   }
 
+  onActivate(): void {
+    this.userService.mySubject.next(true);
+    // Subject also is an object you can subscribe too but it's more active because you can actively call .next() on it from outside.
+  }
 }
