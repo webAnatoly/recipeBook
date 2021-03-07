@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     */
 
     this.secondObsSubscription = this.myCustomObservable.myCustomIntervalObservable.subscribe((value: number) => {
-      console.log('my second observable!', value);
+      console.log('my second new observable', value);
     });
   }
 
