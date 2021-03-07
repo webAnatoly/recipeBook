@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* все элементы (включая псевдо элементы всех элементов ::before и ::after)
+  будут наследовать свойство box-sizing: border-box; от body */
+}
+
+body {
+  background-color: #e8e8e8;
+}

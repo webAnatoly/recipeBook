@@ -1,6 +1,5 @@
-В этой ветке знакомимся, экспериментируем и упражняемся с роутером.
-
-# Book2
+# What are Observables?
+В этой ветке знакомимся, экспериментируем и упражняемся с Observables.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
 
