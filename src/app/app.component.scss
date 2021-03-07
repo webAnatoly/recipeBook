@@ -62,8 +62,22 @@
   min-height: 50px;
   width: 100%;
   font-size: 150%;
+
+  &.highlight--light {
+    background-color: coral;
+  }
 }
 
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+
+  &.down {
+    transform: rotate(45deg);
+  }
+}
 
 .my-arrow {
   background-color: $main-color;
@@ -88,5 +102,134 @@
     position: absolute;
     top: 0;
     right: 0;
+  }
+}
+
+.big-arrow {
+  min-height: 100px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  & > div {
+    flex: 1 1 auto;
+  }
+
+  &__dummy {
+    background-color: $bg-color;
+    z-index: 10;
+  }
+
+  & > div.big-arrow__body {
+    background-color: $main-color;
+    z-index: 10;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__text {
+    font-size: 150%;
+    //font-weight: bold;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    transform: translate(50%, 20%) rotate(45deg);
+    background-color: $main-color;
+    z-index: 1;
+  }
+
+}
+
+.block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid $main-color;
+  font-size: 150%;
+  position: relative;
+}
+
+.data {
+  background-color: orange;
+  color: antiquewhite;
+  font-size: 200%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 160px;
+  height: 100px;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 50%;
+    bottom: -100%;
+    width: 5px;
+    height: 100%;
+    transform: translateX(50%);
+    background-color: inherit;
+    z-index: 110;
+  }
+}
+
+.operators {
+  background-color: lightyellow;
+}
+
+.diagram {
+  position: relative;
+
+  & .block {
+    margin: 3rem auto;
+  }
+
+  & .block.operators {
+    width: 95%;
+  }
+
+  & .block.highlight {
+    width: 50%;
+  }
+
+  &__hr {
+    position: absolute;
+    left: 7%;
+    top: 35%;
+    width: 69%;
+    height: 5px;
+    background-color: orange;
+    z-index: 110;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 62%;
+      top: 100%;
+      width: 5px;
+      height: 48px;
+      background-color: inherit;
+      z-index: 110;
+    }
+  }
+
+  &__arrow-data {
+    position: absolute;
+    left: 49.64%;
+    top: 42.5%;
+    z-index: 220;
   }
 }

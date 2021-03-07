@@ -23,7 +23,7 @@
 </div>
 
 
-<div class="container my-container">
+<div class="container my-container pb-5">
   <div class="row">
     <div class="col-12">
     <h1>What are Observables?</h1>
@@ -90,6 +90,39 @@
       <p>So this is how the observable pattern generally works and of course you use it to handle asynchronous tasks
         because all these data sources here, user events, triggered in your code or a HTTP request are asynchronous tasks,
         you don't know when they will happen and you don't know how long they will take.</p>
+
+      <h2 class="text-center">Operators</h2>
+
+      <h3>Операторы позволяют трансформировать или фильтровать данные которые емитит Observable.</h3>
+
+      <p>You might want to transform or filter data and of course, you could do that inside of you subscription or in the function
+        you pass to your pass to your subscription, but there's a more elegant way, you can use built-in in between subscription and
+        data from Observable. That means that the data points first of all reach operators that do something to the data and that
+        something can be anything, there are tons of build-in operators in RxJS library
+        and then you subscribe to the result of these operators.</p>
+
+      <div class="diagram">
+        <div class="row">
+          <div class="col-2"><div class="data">Data</div></div>
+          <div class="col-2"><div class="data">Data</div></div>
+          <div class="col-2"></div>
+          <div class="col-2"></div>
+          <div class="col-2"><div class="data">Data</div></div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="big-arrow">
+          <div class="big-arrow__dummy"></div>
+          <div class="big-arrow__body"><span class="big-arrow__text">Observable</span></div>
+          <div class="big-arrow__dummy"></div>
+        </div>
+        <div class="diagram__hr"></div>
+        <i class="arrow down diagram__arrow-data"></i>
+        <div class="block operators">Operators</div>
+        <div class="block highlight highlight--light">Subscription</div>
+        <div class="block highlight">Observer</div>
+      </div>
+
     </div>
   </div>
 </div>
