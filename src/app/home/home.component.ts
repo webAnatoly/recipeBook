@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { interval, Observable, Subscription } from 'rxjs';
 import { MyCustomObservableService } from '../shared/my-custom-observable.service';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 
 // interval() Creates an Observable that emits sequential numbers every specified interval of time
@@ -38,7 +38,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     to be precise that RxJS package gives us different ways of creating a new observable
     and one of the easiest ways is the interval method, the interval function.
     */
-    this.firstObsSubscription = interval(1000).pipe(map(data => data + 100)).subscribe((count: number) => {
+    this.firstObsSubscription = interval(1000).pipe(
+      map(data => data + 100),
+      filter((data, index) => {
+        console.log('data', data, 'index', index);
+        return data === 101;
+    })).subscribe((count: number) => {
       console.log('count:', count);
     });
 
