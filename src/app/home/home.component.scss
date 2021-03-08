@@ -1,0 +1,12 @@
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+/*
+ng-invalid
+ng-touched это ангуляровские классы, которые он добавляет к полям
+
+Например ng-touched он добавляет к инпутам, когда юзер начинает там печатать.
+
+еще ng-dirty есть.
+ */
