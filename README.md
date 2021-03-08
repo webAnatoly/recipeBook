@@ -1,5 +1,5 @@
-# What are Observables?
-В этой ветке знакомимся, экспериментируем и упражняемся с Observables.
+# Forms?
+В этой ветке знакомимся, экспериментируем и упражняемся с формами.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
 

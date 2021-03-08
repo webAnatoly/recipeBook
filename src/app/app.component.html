@@ -1,130 +1,28 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <a routerLink="/">Home</a> |
-      <a [routerLink]="['user', 1]">
-        User 1
-      </a>
-      |
-      <a [routerLink]="['user', 2]">
-        User 2
-      </a>
-    </div>
-  </div>
-  <hr>
-  <p>{{activated ? 'Activated!' : 'not active'}}</p>
-  <hr/>
-  <div class="row">
-    <div class="col-12">
-      <h5 class="mb-4 mt-2">В этой ветке знакомимся, экспериментируем и упражняемся с Observables.</h5>
-      <div class="outlet-wrapper">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="container my-container pb-5">
-  <div class="row">
-    <div class="col-12">
-    <h1>What are Observables?</h1>
-
-    <p>An observable basically can be thought of as a data source.</p>
-
-    <div class="my-card">
-      <div class="my-card__title my-card__item">Various Data Sources</div>
-      <div class="my-card__content my-card__item">(User Input) Events, Http Requests, Triggered in Code, ... and so on.</div>
-    </div>
-
-    <p>Now in our Angular project, an observable basically just is an object we import from a third-part package, RxJS.
-      The observable here is implemented in a way that it follows the observable pattern,
-      so we have an observable and we have an observer. In between, we have a streem, a timeline</p>
-
-    <div class="my-arrow">===============arrow==================></div>
-
-    <p>and on this timeline, we can have multiple events emitted by the obserable or data packages
-      you could say emitted be the observable, depending on the data source of that observable of course.</p>
-
-    <p>So the observable could emit data because you trigger it to do so, you can do that programmatically,
-      it could be connected to a button and therefore whenever the button is clicked, an event in a data package
-      is emitted automatically or as the Angular HTTP service does it, it's connected to a HTTP request.
-      So when the response returns, the response is emitted as a data package and there are dozens of other data sources
-      too.</p>
-
-    <p>So, the other part is the Observer</p>
-
-    <p>Observer - this actually is your code you could say. It's the subscribe function you saw earlier.</p>
-
-    <p>There you have three ways of handling data packages - because these are the three types of data packages you can
-      receive and in these hooks, in these boxes you could say, you write your code gets executed.</p>
-
-
-      <div class="row pb-3">
-        <div class="col-4"><div class="my-card-2">Handle Data</div></div>
-        <div class="col-4"><div class="my-card-2">Handle Error</div></div>
-        <div class="col-4"><div class="my-card-2">Handle Completion</div></div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="highlight">Observer</div>
+    <div class="col-md-8 m-auto">
+      <h2>Template Driven Forms</h2>
+      <form>
+        <div id="user-data">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control">
+          </div>
+          <button class="btn btn-outline-dark mb-3" type="button">Suggest an Username</button>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input type="email" id="email" class="form-control">
+          </div>
         </div>
-      </div>
-
-
-    <ol>
-      <li>You can handle the normal data;</li>
-      <li>You can handle errors;</li>
-      <li>You can handle the completion of the observable</li>
-    </ol>
-
-      <p>
-        So you can determine what should happen if I receive a new data package,
-        what should happen if I receive error, what should happen when the observable eventually completes?
-
-        Side note, an observable doesn't have to complete. There are observable, for example hooked up to a normal button,
-        which never complete because how would you know when it completes?
-        A user could click the button how ofter the user wants right.
-
-      <p>Other observable, like the HTTP request on the other hand, will have a clear end and will complete eventually
-      because once the response is there, what else should happen, it's done.</p>
-
-      <p>So this is how the observable pattern generally works and of course you use it to handle asynchronous tasks
-        because all these data sources here, user events, triggered in your code or a HTTP request are asynchronous tasks,
-        you don't know when they will happen and you don't know how long they will take.</p>
-
-      <h2 class="text-center">Operators</h2>
-
-      <h3>Операторы позволяют трансформировать или фильтровать данные которые емитит Observable.</h3>
-
-      <p>You might want to transform or filter data and of course, you could do that inside of you subscription or in the function
-        you pass to your pass to your subscription, but there's a more elegant way, you can use built-in in between subscription and
-        data from Observable. That means that the data points first of all reach operators that do something to the data and that
-        something can be anything, there are tons of build-in operators in RxJS library
-        and <b>then you subscribe to the result of these operators</b>.</p>
-
-      <div class="diagram">
-        <div class="row">
-          <div class="col-2"><div class="data">Data</div></div>
-          <div class="col-2"><div class="data">Data</div></div>
-          <div class="col-2"></div>
-          <div class="col-2"></div>
-          <div class="col-2"><div class="data">Data</div></div>
-          <div class="col-2"></div>
+        <div class="form-group">
+          <label for="secret">Secret Questions</label>
+          <select id="secret" class="form-control">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
         </div>
-
-        <div class="big-arrow">
-          <div class="big-arrow__dummy"></div>
-          <div class="big-arrow__body"><span class="big-arrow__text">Observable</span></div>
-          <div class="big-arrow__dummy"></div>
-        </div>
-        <div class="diagram__hr"></div>
-        <i class="arrow down diagram__arrow-data"></i>
-        <div class="block operators">Operators</div>
-        <div class="block highlight highlight--light">Subscription</div>
-        <div class="block highlight">Observer</div>
-      </div>
-
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
     </div>
   </div>
 </div>
