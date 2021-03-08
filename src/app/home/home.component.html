@@ -28,6 +28,19 @@
             <option value="teacher">Your first teacher?</option>
           </select>
         </div>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            name="questionAnswer"
+            rows="3"
+            [(ngModel)]="answer"
+          ></textarea><!-- Two-way binding with answer property -->
+<!--          So ngModel three variants of using -->
+<!--          1) no binding - to just tell Angular that an input is a control. -->
+<!--          2) one-way binding to give that control a default value -->
+<!--          3) two-way binding to instantly output it or do whatever you want to do with that value. -->
+        </div>
+        <p>Your replay: {{ answer }}</p>
         <button
           class="btn btn-primary"
           type="submit"
