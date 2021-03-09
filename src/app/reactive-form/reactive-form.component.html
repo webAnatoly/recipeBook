@@ -31,6 +31,8 @@
               id="username"
               formControlName="username"
               class="form-control">
+            <span class="form-text text-danger"
+                  *ngIf="username && !username.valid && username.touched">Please enter a valid username!</span>
           </div>
           <button class="btn btn-outline-dark mb-3" type="button">Suggest an Username</button>
           <div class="form-group">
@@ -40,6 +42,8 @@
               id="email"
               formControlName="email"
               class="form-control">
+            <span class="form-text text-danger"
+                  *ngIf="email && !email.valid && email.touched">Please enter a valid email!</span>
           </div>
         </div>
         <div class="radio" *ngFor="let gender of genders">
