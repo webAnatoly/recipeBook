@@ -13,7 +13,7 @@
         to the directive [formGroup]="myReactiveSignUpForm". And now this form actually
         synchronized with the form we created in TypeScript file.
         -->
-        <div id="user-data">
+        <div id="user-data" formGroupName="userData">
           <div class="form-group">
             <label for="username">Username</label>
             <!--Мы так же должны сказать Ангуляру which controls should be connected to which inputs in the template code,

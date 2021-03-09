@@ -25,14 +25,16 @@ export class ReactiveFormComponent implements OnInit {
 
     /* Controls are basically just key-value pairs in this config object we pass to the overall FormGroup. */
     this.myReactiveSignUpForm = new FormGroup({
-      username: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      userData: new FormGroup({ // nested form example
+        username: new FormControl(null, Validators.required),
+        email: new FormControl(null, [Validators.required, Validators.email]),
+      }),
       gender: new FormControl('male'),
     });
   }
 
-  get username(): AbstractControl | null { return this.myReactiveSignUpForm.get('username'); }
-  get email(): AbstractControl | null { return this.myReactiveSignUpForm.get('email'); }
+  get username(): AbstractControl | null { return this.myReactiveSignUpForm.get(['userData', 'username']); } // можно в виде массива
+  get email(): AbstractControl | null { return this.myReactiveSignUpForm.get('userData.username'); } // можно в виде строки, через точку
 
   onSubmit(): void {
     console.log(this.myReactiveSignUpForm);
