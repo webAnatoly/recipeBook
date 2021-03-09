@@ -12,6 +12,7 @@ export class ViewChildExampleComponent implements OnInit {
   /*
   Такой способ полезен потому что можно получать доступ к объкту формы не только во время Submit, но и раньше, если надо.
    */
+  genders = ['male', 'female'];
 
   constructor() { }
 
