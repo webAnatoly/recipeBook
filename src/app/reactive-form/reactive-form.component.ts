@@ -31,4 +31,7 @@ export class ReactiveFormComponent implements OnInit {
     });
   }
 
+  onSubmit(): void {
+    console.log(this.myReactiveSignUpForm);
+  }
 }
