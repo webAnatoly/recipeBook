@@ -46,5 +46,16 @@
       </form>
     </div>
   </div>
+  <hr/>
+  <div class="row" *ngIf="submitted">
+    <div class="col-md-8 m-auto">
+      <h3>Your Data</h3>
+      <p>Сюда выводим данные после Submit формы</p>
+      <p>Username: {{user.name}}</p>
+      <p>Mail: {{user.email}}</p>
+      <p>Secret Question: {{user.question}}</p>
+      <p>Gender: {{user.gender}}</p>
+    </div>
+  </div>
 </div>
 

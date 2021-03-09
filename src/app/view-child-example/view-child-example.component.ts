@@ -14,6 +14,15 @@ export class ViewChildExampleComponent implements OnInit {
    */
   genders = ['male', 'female'];
 
+  submitted = false;
+
+  user = {
+    name: '',
+    email: '',
+    question: '',
+    gender: '',
+  };
+
   constructor() { }
 
   ngOnInit(): void {
@@ -42,6 +51,11 @@ export class ViewChildExampleComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.signUpForm);
+    this.user.name = this.signUpForm.value.userData.username;
+    this.user.email = this.signUpForm.value.userData.email;
+    this.user.question = this.signUpForm.value.secret;
+    this.user.gender = this.signUpForm.value.gender;
+    this.submitted = true;
   }
 
 }
