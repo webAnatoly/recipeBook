@@ -19,6 +19,9 @@ export class ReactiveFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // You should initialize form before rendering the template
+    this.myReactiveSignUpForm = new FormGroup({}); // this is our first created form.
+    // This JS object configures it an as it's empty, it simply says or tells Angular, hey this form doesn't have any controls.
   }
 
 }

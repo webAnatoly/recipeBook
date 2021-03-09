@@ -38,6 +38,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     FormsModule, // для работы с формами в стиле Template Driven Approach
     ReactiveFormsModule, // для работы с формами в реактивном стиле
     /* ReactiveFormsModule containing all the tools we need to build our form on our own and then connect it to our HTML code.*/
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
