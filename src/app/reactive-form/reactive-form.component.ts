@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-form',
@@ -20,8 +20,15 @@ export class ReactiveFormComponent implements OnInit {
 
   ngOnInit(): void {
     // You should initialize form before rendering the template
-    this.myReactiveSignUpForm = new FormGroup({}); // this is our first created form.
+    // this.myReactiveSignUpForm = new FormGroup({}); // this is our first created form.
     // This JS object configures it an as it's empty, it simply says or tells Angular, hey this form doesn't have any controls.
+
+    /* Controls are basically just key-value pairs in this config object we pass to the overall FormGroup. */
+    this.myReactiveSignUpForm = new FormGroup({
+      username: new FormControl(null),
+      email: new FormControl(null),
+      gender: new FormControl('male'),
+    });
   }
 
 }
