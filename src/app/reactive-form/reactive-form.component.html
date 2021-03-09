@@ -2,13 +2,29 @@
   <div class="row">
     <div class="col-md-8 m-auto">
       <h2>Reactive Form Approach</h2>
-      <form>
+      <form [formGroup]="myReactiveSignUpForm">
+        <!-- [formGroup] directive tells Angular, hey please take my formGroup, don't infer one, don't create a form for me,
+        use my formGroup instead. And we need to set up property binding here because we need to pass our form as an argument
+        to the directive [formGroup]="myReactiveSignUpForm". And now this form actually
+        synchronized with the form we created in TypeScript file.
+        -->
         <div id="user-data">
           <div class="form-group">
             <label for="username">Username</label>
+            <!--Мы так же должны сказать Ангуляру which controls should be connected to which inputs in the template code,
+            for this we get another directive - formControlName="username"
+
+            nameOfControl это ключь в форме, которую мы создали в typescript файле. В нашем примере это
+            this.myReactiveSignUpForm = new FormGroup({
+                username: new FormControl(null),
+                ...
+            });
+
+            -->
             <input
               type="text"
               id="username"
+              formControlName="username"
               class="form-control">
           </div>
           <button class="btn btn-outline-dark mb-3" type="button">Suggest an Username</button>
@@ -17,6 +33,7 @@
             <input
               type="email"
               id="email"
+              formControlName="email"
               class="form-control">
           </div>
         </div>
@@ -24,6 +41,7 @@
           <label for="genderInput">
             <input id="genderInput"
                    type="radio"
+                   formControlName="gender"
                    [value]="gender">{{gender}}
           </label>
         </div>
