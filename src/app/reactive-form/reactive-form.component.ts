@@ -16,6 +16,8 @@ export class ReactiveFormComponent implements OnInit {
   you need to import ReactiveFormsModule in app.module.ts So the ReactiveFormsModule containing all the tools we need
   to build our form on our own and then connect it to our HTML code. */
 
+  forbiddenUserNames = ['Chris', 'Anna'];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class ReactiveFormComponent implements OnInit {
     /* Controls are basically just key-value pairs in this config object we pass to the overall FormGroup. */
     this.myReactiveSignUpForm = new FormGroup({
       userData: new FormGroup({ // nested form example
-        username: new FormControl(null, Validators.required),
+        username: new FormControl(null, [Validators.required, this.forbiddenNamesValidator(this)]),
         email: new FormControl(null, [Validators.required, Validators.email]),
       }),
       gender: new FormControl('male'),
@@ -46,5 +48,12 @@ export class ReactiveFormComponent implements OnInit {
   onAddHobby(): void {
     const control = new FormControl(null, Validators.required);
     this.hobbies.push(control);
+  }
+
+  forbiddenNamesValidator(self: ReactiveFormComponent): (control: AbstractControl) => ({ [key: string]: boolean} | null) {
+    return (control: AbstractControl): {[key: string]: boolean} | null => {
+      const forbidden = self.forbiddenUserNames.indexOf(control.value) !== -1;
+      return forbidden ? { nameIsForbidden: true } : null; // if validation is successful, you have to pass nothing or null
+    };
   }
 }
