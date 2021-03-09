@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-form',
@@ -30,14 +30,21 @@ export class ReactiveFormComponent implements OnInit {
         email: new FormControl(null, [Validators.required, Validators.email]),
       }),
       gender: new FormControl('male'),
+      hobbies: new FormArray([]),
     });
   }
 
   get username(): AbstractControl | null { return this.myReactiveSignUpForm.get(['userData', 'username']); } // можно в виде массива
   get email(): AbstractControl | null { return this.myReactiveSignUpForm.get('userData.username'); } // можно в виде строки, через точку
+  get hobbies(): FormArray { return this.myReactiveSignUpForm.get('hobbies') as FormArray; }
 
   onSubmit(): void {
     console.log(this.myReactiveSignUpForm);
     console.log('this.myReactiveSignUpForm.valid: ', this.myReactiveSignUpForm.valid);
+  }
+
+  onAddHobby(): void {
+    const control = new FormControl(null, Validators.required);
+    this.hobbies.push(control);
   }
 }
