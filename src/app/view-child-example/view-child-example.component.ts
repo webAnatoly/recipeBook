@@ -19,6 +19,19 @@ export class ViewChildExampleComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  suggestUserName(): void {
+    const suggestedName = 'Superuser';
+    /* Пример установки значений формы с помощью setValue(). Нужно передовать объект полностью иначе будет ошибка. */
+    this.signUpForm.setValue({
+      userData: {
+        username: suggestedName,
+        email: '',
+      },
+      secret: 'pet',
+      gender: 'male',
+    });
+  }
+
   onSubmit(): void {
     console.log(this.signUpForm);
   }
