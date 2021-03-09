@@ -56,6 +56,9 @@ export class ViewChildExampleComponent implements OnInit {
     this.user.question = this.signUpForm.value.secret;
     this.user.gender = this.signUpForm.value.gender;
     this.submitted = true;
+
+    this.signUpForm.reset(); // очистить форму
+    // If you want, you can pass the same object as in setValue() to reset() which will then reset the form to specific values!
   }
 
 }
