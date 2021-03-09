@@ -11,6 +11,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { ViewChildExampleComponent } from './view-child-example/view-child-example.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeComponent } from './home/home.component';
     ViewChildExampleComponent,
     HeaderComponent,
     HomeComponent,
+    ReactiveFormComponent,
   ],
   imports: [
     BrowserModule,
