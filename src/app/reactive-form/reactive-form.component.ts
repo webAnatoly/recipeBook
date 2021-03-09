@@ -39,6 +39,10 @@ export class ReactiveFormComponent implements OnInit {
   get username(): AbstractControl | null { return this.myReactiveSignUpForm.get(['userData', 'username']); } // можно в виде массива
   get email(): AbstractControl | null { return this.myReactiveSignUpForm.get('userData.username'); } // можно в виде строки, через точку
   get hobbies(): FormArray { return this.myReactiveSignUpForm.get('hobbies') as FormArray; }
+  get isForbiddenName(): boolean {
+    const control: AbstractControl | null = this.myReactiveSignUpForm.get('userData.username');
+    return control && control.errors && control.errors.nameIsForbidden;
+  }
 
   onSubmit(): void {
     console.log(this.myReactiveSignUpForm);

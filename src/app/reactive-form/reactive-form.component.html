@@ -31,8 +31,14 @@
               id="username"
               formControlName="username"
               class="form-control">
-            <span class="form-text text-danger"
-                  *ngIf="username && !username.valid && username.touched">Please enter a valid username!</span>
+            <span class="form-text text-danger" *ngIf="username && !username.valid && username.touched">
+              <span class="form-text text-danger" *ngIf="username && username.errors && username.errors.required">
+                The name is required!
+              </span>
+              <span class="form-text text-danger" *ngIf="isForbiddenName">
+                The name <em>{{username && username.value ? username.value : ''}}</em> is Forbidden!
+              </span>
+            </span>
           </div>
           <button class="btn btn-outline-dark mb-3" type="button">Suggest an Username</button>
           <div class="form-group">
