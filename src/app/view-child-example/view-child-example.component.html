@@ -4,7 +4,11 @@
       <h2>Пример формы с использованием @ViewChild</h2>
       <p>Пример с получением объекта формы через @ViewChild </p>
       <form (ngSubmit)="onSubmit()" #f="ngForm">
-        <div id="user-data">
+        <div id="user-data" ngModelGroup="userData">
+          <!--ngModelGroup группирует несколько инпутов в один объект-->
+          <!--ngModelGroup needs to be set equal to string, this will be the key name for this group-->
+          <!--теперь в NgForm.value будет свойство .userData c объектом группы полей из этого шаблона {username: "", email: ""}
+          и так же эта группа появится в NgForm.controls.userData-->
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" class="form-control" name="username" ngModel>
