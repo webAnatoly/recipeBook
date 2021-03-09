@@ -22,13 +22,21 @@ export class ViewChildExampleComponent implements OnInit {
   suggestUserName(): void {
     const suggestedName = 'Superuser';
     /* Пример установки значений формы с помощью setValue(). Нужно передовать объект полностью иначе будет ошибка. */
-    this.signUpForm.setValue({
+    // this.signUpForm.setValue({
+    //   userData: {
+    //     username: suggestedName,
+    //     email: '',
+    //   },
+    //   secret: 'pet',
+    //   gender: 'male',
+    // });
+
+    /* Пример с patchValue()
+       в отличии от setValue() form.patchValue() позволяет обновить целевой инпут не затрагивая другие инпуты */
+    this.signUpForm.form.patchValue({
       userData: {
         username: suggestedName,
-        email: '',
       },
-      secret: 'pet',
-      gender: 'male',
     });
   }
 
