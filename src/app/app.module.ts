@@ -1,6 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+/* В ангуляре существует два подхода работы с формами Template Driven and Reactive
+
+для Template Driven подхода нужен модуль FormsModule,
+для Reactive подхода нужен модуль ReactiveFormsModule
+
+В этом приложении я знакомлюсь с обоими подходами, поэтому импортирую оба модуля.
+ */
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,10 +35,11 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    AppRoutingModule,
+    FormsModule, // для работы с формами в стиле Template Driven Approach
+    ReactiveFormsModule, // для работы с формами в реактивном стиле
+    /* ReactiveFormsModule containing all the tools we need to build our form on our own and then connect it to our HTML code.*/
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
