@@ -31,7 +31,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <button class="btn btn-success shopping-edit-btn" type="submit" [disabled]="!f.valid">Add</button>
+          <button class="btn btn-success shopping-edit-btn" type="submit" [disabled]="!f.valid">{{ editMode ? 'Update' : 'Add' }}</button>
           <button class="btn btn-danger shopping-edit-btn" type="button">Delete</button>
           <button class="btn btn-primary shopping-edit-btn" type="button">Clear</button>
         </div>

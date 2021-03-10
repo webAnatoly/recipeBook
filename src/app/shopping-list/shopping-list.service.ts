@@ -19,8 +19,17 @@ export class ShoppingListService {
   ];
 
   ingredientsChanged = new Subject<Ingredient[]>();
+  startedEditing = new Subject<number>();
 
   constructor() { }
+
+  getIngredient(index: number): Ingredient | null {
+    const result = this.ingredients[index];
+    if (result) {
+      return JSON.parse(JSON.stringify(result));
+    }
+    return null;
+  }
 
   getIngredients(): Ingredient[] {
     return this.ingredients.slice(); // возвращаем новую копию массива
@@ -34,5 +43,15 @@ export class ShoppingListService {
   addIngredients(ingredients: Ingredient[]): void {
     this.ingredients.push(...ingredients);
     this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
+  upgradeIngredient(index: number | null, newIngredient: Ingredient): void {
+    if (index && index > 0 && index < this.ingredients.length) {
+      this.ingredients[index] = newIngredient;
+      this.ingredientsChanged.next(JSON.parse(JSON.stringify(this.ingredients)));
+    } else {
+      const error = new Error('неверный индекс ингредиента');
+      console.error(error);
+    }
   }
 }
