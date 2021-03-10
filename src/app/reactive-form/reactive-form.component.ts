@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reactive-form',
@@ -29,7 +30,7 @@ export class ReactiveFormComponent implements OnInit {
     this.myReactiveSignUpForm = new FormGroup({
       userData: new FormGroup({ // nested form example
         username: new FormControl(null, [Validators.required, this.forbiddenNamesValidator(this)]),
-        email: new FormControl(null, [Validators.required, Validators.email]),
+        email: new FormControl(null, [Validators.required, Validators.email], this.asyncForbiddenEmailsValidator()),
       }),
       gender: new FormControl('male'),
       hobbies: new FormArray([]),
@@ -37,11 +38,15 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   get username(): AbstractControl | null { return this.myReactiveSignUpForm.get(['userData', 'username']); } // можно в виде массива
-  get email(): AbstractControl | null { return this.myReactiveSignUpForm.get('userData.username'); } // можно в виде строки, через точку
+  get email(): AbstractControl | null { return this.myReactiveSignUpForm.get('userData.email'); } // можно в виде строки, через точку
   get hobbies(): FormArray { return this.myReactiveSignUpForm.get('hobbies') as FormArray; }
   get isForbiddenName(): boolean {
     const control: AbstractControl | null = this.myReactiveSignUpForm.get('userData.username');
     return control && control.errors && control.errors.nameIsForbidden;
+  }
+  get isForbiddenEmail(): boolean {
+    const control: AbstractControl | null = this.myReactiveSignUpForm.get('userData.email');
+    return control && control.errors && control.errors.emailIsForbidden;
   }
 
   onSubmit(): void {
@@ -58,6 +63,20 @@ export class ReactiveFormComponent implements OnInit {
     return (control: AbstractControl): {[key: string]: boolean} | null => {
       const forbidden = self.forbiddenUserNames.indexOf(control.value) !== -1;
       return forbidden ? { nameIsForbidden: true } : null; // if validation is successful, you have to pass nothing or null
+    };
+  }
+
+  asyncForbiddenEmailsValidator(): (control: AbstractControl) => (Promise<any> | Observable<any>) {
+    return (control: AbstractControl): Promise<any> | Observable<any> => {
+      return new Promise<any>((resolve, reject) => {
+        setTimeout(() => {
+          if (control.value === 'test@test.ru') {
+            resolve({emailIsForbidden: true});
+          } else {
+            resolve(null);
+          }
+        }, 1500);
+      });
     };
   }
 }

@@ -48,8 +48,17 @@
               id="email"
               formControlName="email"
               class="form-control">
-            <span class="form-text text-danger"
-                  *ngIf="email && !email.valid && email.touched">Please enter a valid email!</span>
+            <span class="form-text text-danger" *ngIf="email && !email.valid && email.touched">
+              <span class="form-text text-danger" *ngIf="email && email.errors && email.errors.required">
+                Please enter a email!
+              </span>
+              <span class="form-text text-danger" *ngIf="email && email.errors && email.errors.email">
+                Please enter a valid email!
+              </span>
+              <span class="form-text text-danger" *ngIf="isForbiddenEmail">
+                User with this email <em>{{email && email.value ? email.value : ''}}</em> already exists!
+              </span>
+            </span>
           </div>
         </div>
         <div class="radio" *ngFor="let gender of genders">
