@@ -45,13 +45,15 @@ export class ShoppingListService {
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 
-  upgradeIngredient(index: number | null, newIngredient: Ingredient): void {
-    if (index && index > 0 && index < this.ingredients.length) {
-      this.ingredients[index] = newIngredient;
+  upgradeIngredient(index: number, newIngredient: Ingredient): void {
+    this.ingredients[index] = newIngredient;
+    this.ingredientsChanged.next(JSON.parse(JSON.stringify(this.ingredients)));
+  }
+
+  deleteIngredient(index: number): void {
+    if (index < this.ingredients.length) {
+      this.ingredients.splice(index, 1);
       this.ingredientsChanged.next(JSON.parse(JSON.stringify(this.ingredients)));
-    } else {
-      const error = new Error('неверный индекс ингредиента');
-      console.error(error);
     }
   }
 }
