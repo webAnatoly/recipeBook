@@ -35,6 +35,16 @@ export class ReactiveFormComponent implements OnInit {
       gender: new FormControl('male'),
       hobbies: new FormArray([]),
     });
+
+    // Можно подписывать на изменения статуса формы
+    this.myReactiveSignUpForm.statusChanges.subscribe((status) => {
+      console.log('Status of the Form: ', status);
+    });
+
+    // Можно подписываться на изменения значений формы.
+    // this.myReactiveSignUpForm.valueChanges.subscribe((form) => {
+    //   console.log('Value of the Form is changed: ', form);
+    // });
   }
 
   get username(): AbstractControl | null { return this.myReactiveSignUpForm.get(['userData', 'username']); } // можно в виде массива
