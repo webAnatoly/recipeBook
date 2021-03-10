@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <form>
+    <form (ngSubmit)="onAddItem(f)" #f="ngForm">
       <div class="row">
         <div class="col-5">
           <div class="app-input-group app-input-group--column shopping-edit-input-group">
@@ -8,7 +8,10 @@
             <input
               type="text"
               id="name"
-              #nameInput>
+              name="name"
+              ngModel
+              required
+            >
           </div>
         </div>
         <div class="col-2">
@@ -17,13 +20,18 @@
             <input
               type="number"
               id="amount"
-              #amountInput>
+              name="amount"
+              min="0"
+              ngModel
+              required
+              [pattern]="'^[1-9]+[0-9]*$'"
+            >
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <button class="btn btn-success shopping-edit-btn" type="submit" (click)="onAddItem()">Add</button>
+          <button class="btn btn-success shopping-edit-btn" type="submit" [disabled]="!f.valid">Add</button>
           <button class="btn btn-danger shopping-edit-btn" type="button">Delete</button>
           <button class="btn btn-primary shopping-edit-btn" type="button">Clear</button>
         </div>
