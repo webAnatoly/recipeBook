@@ -74,6 +74,7 @@ export class ReactiveFormComponent implements OnInit {
   onSubmit(): void {
     console.log(this.myReactiveSignUpForm);
     console.log('this.myReactiveSignUpForm.valid: ', this.myReactiveSignUpForm.valid);
+    this.myReactiveSignUpForm.reset({gender: 'male'}); // you can pass an object to reset to reset ot specific values
   }
 
   onAddHobby(): void {
