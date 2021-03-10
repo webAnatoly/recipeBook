@@ -45,6 +45,18 @@ export class ReactiveFormComponent implements OnInit {
     // this.myReactiveSignUpForm.valueChanges.subscribe((form) => {
     //   console.log('Value of the Form is changed: ', form);
     // });
+
+    const initialValues = {
+      userData: {
+        username: 'Default User Name',
+        email: 'test@test.ru',
+      },
+      gender: 'male',
+      hobbies: [],
+    };
+
+    // Пример установки значений формы через метод setValue()
+    this.myReactiveSignUpForm.setValue(initialValues);
   }
 
   get username(): AbstractControl | null { return this.myReactiveSignUpForm.get(['userData', 'username']); } // можно в виде массива
