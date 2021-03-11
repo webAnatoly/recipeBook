@@ -161,6 +161,9 @@ div.btn[disabled] {
   height: $input-height;
   padding: $input-padding-y $input-padding-x;
 }
+textarea.form-control {
+  height: auto;
+}
 
 /* Выпадающее меню */
 .dropdown {
