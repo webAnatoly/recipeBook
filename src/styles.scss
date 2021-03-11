@@ -2,8 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;1,300&display=swap');
 @import '~normalize.css';
 
-/* Сетку бутстрапа будем использовать */
-@import 'node_modules/bootstrap/scss/bootstrap-grid.scss';
+/* Сетка бутстрапа
+При подключении сетки подключаются и бутстраповские миксины и переменные, чтобы иметь возможность их переопределять я скопировал
+весь scss бутстрапа в папку src/assets/scss/bootstrap/ и подключил оттуда только сетку.
+Теперь в той папке, можно переопределять переменные в файле src/assets/scss/bootstrap/_variables.scss
+*/
+@import 'assets/scss/bootstrap/bootstrap-grid.scss';
 
 *,
 *::after,
@@ -145,6 +149,17 @@ div.btn[disabled] {
   &--column {
     flex-direction: column;
   }
+}
+
+.form-group {
+  margin-bottom: $form-group-margin-bottom;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: $input-height;
+  padding: $input-padding-y $input-padding-x;
 }
 
 /* Выпадающее меню */

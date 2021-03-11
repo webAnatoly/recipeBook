@@ -1,1 +1,69 @@
-<p>recipe-edit works!</p>
+<div class="row">
+  <div class="col-12">
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              class="form-control"
+              type="text"
+              id="name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input
+              class="form-control"
+              type="text"
+              id="imagePath"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <img src="" alt="image preview">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              class="form-control"
+              id="description"
+              rows="6"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="row d-flex align-items-center">
+            <div class="col-8">
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-2" style="border: 1px solid red">
+              <input type="number" min="0" class="form-control">
+            </div>
+            <div class="col-2">
+              <button class="btn btn-danger">x</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
