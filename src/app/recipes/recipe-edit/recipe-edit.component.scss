@@ -26,4 +26,9 @@ form {
   & textarea {
     resize: none;
   }
+
+  // используем крассы любезно предоставляемые ангуляром
+  & .ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
 }
