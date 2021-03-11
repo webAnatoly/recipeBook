@@ -30,7 +30,7 @@ export class RecipeService {
   constructor(private shoppingListService: ShoppingListService) { }
 
   getRecipes(): Recipe[] {
-    return this.recipes.slice(); // slice() вернёт новый массив
+    return JSON.parse(JSON.stringify(this.recipes));
   }
 
   getRecipe(id: number): Recipe {
