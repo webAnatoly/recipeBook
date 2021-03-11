@@ -32,11 +32,22 @@ export class AppComponent {
       started: new Date(15, 1, 2017)
     }
   ];
-  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}): {[key: string]: boolean} {
-    return {
-      'list-group-item-success': server.status === 'stable',
-      'list-group-item-warning': server.status === 'offline',
-      'list-group-item-danger': server.status === 'critical'
-    };
+  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date},
+                   classPrefix: 'list-group-item' | 'badge'):
+    {[key: string]: boolean} {
+    switch (classPrefix) {
+      case 'list-group-item':
+        return {
+          'list-group-item-success': server.status === 'stable',
+          'list-group-item-warning': server.status === 'offline',
+          'list-group-item-danger': server.status === 'critical'
+        };
+      case 'badge':
+        return {
+          'badge-success': server.status === 'stable',
+          'badge-secondary': server.status === 'offline',
+          'badge-danger': server.status === 'critical'
+        };
+    }
   }
 }
