@@ -9,7 +9,7 @@
           <span>
             <strong>{{ server.name }}</strong> |
             {{ server.instanceType | uppercase }} |
-            {{ server.started }}
+            {{ server.started | date }}
           </span>
           <span class="badge" [ngClass]="getStatusClasses(server, 'badge')">
             {{ server.status }}
