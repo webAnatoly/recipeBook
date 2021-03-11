@@ -6,7 +6,11 @@
           class="list-group-item d-flex justify-content-between"
           *ngFor="let server of servers"
           [ngClass]="getStatusClasses(server, 'list-group-item')">
-          <span><strong>{{ server.name }}</strong> | {{ server.instanceType }} | {{ server.started }}</span>
+          <span>
+            <strong>{{ server.name }}</strong> |
+            {{ server.instanceType | uppercase }} |
+            {{ server.started }}
+          </span>
           <span class="badge" [ngClass]="getStatusClasses(server, 'badge')">
             {{ server.status }}
           </span>
