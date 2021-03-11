@@ -58,4 +58,11 @@ export class RecipeService {
     this.recipes[index] = newRecipe;
     this.recipeChanged.next(JSON.parse(JSON.stringify(this.recipes)));
   }
+
+  deleteRecipe(index: number): void {
+    if (index && index < this.recipes.length) {
+      this.recipes.splice(index, 1);
+      this.recipeChanged.next(JSON.parse(JSON.stringify(this.recipes)));
+    }
+  }
 }

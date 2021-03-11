@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RecipeDetailComponent implements OnInit {
   isDropdownVisible = false;
   recipeDetail: Recipe = {name: '', description: '', imagePath: '', ingredients: [{name: '', amount: 0}] };
-  recipeID = 0;
+  recipeID: number | null = null;
 
   constructor(private recipeService: RecipeService,
               private route: ActivatedRoute,
@@ -35,5 +35,13 @@ export class RecipeDetailComponent implements OnInit {
   onEditRecipe(): void {
     this.router.navigate(['edit'], {relativeTo: this.route})
       .catch(error => console.error(error));
+  }
+
+  onDeleteRecipe(): void {
+    if (this.recipeID !== null) {
+      this.recipeService.deleteRecipe(this.recipeID);
+      this.router.navigate(['/recipes'], )
+        .catch(error => console.error(error));
+    }
   }
 }

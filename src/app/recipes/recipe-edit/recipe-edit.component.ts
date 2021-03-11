@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecipeService } from '../recipe.service';
 
@@ -14,6 +14,7 @@ export class RecipeEditComponent implements OnInit {
   recipeForm!: FormGroup;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private recipeService: RecipeService) { }
 
   ngOnInit(): void {
@@ -66,6 +67,7 @@ export class RecipeEditComponent implements OnInit {
     } else {
       this.recipeService.addRecipe(this.recipeForm.value);
     }
+    this.router.navigate(['/recipes', this.recipeID]).catch(error => console.error(error));
   }
 
   /* Добавляет группу инпутов для ввода инфы об ингредиенте */
@@ -77,5 +79,9 @@ export class RecipeEditComponent implements OnInit {
         Validators.pattern(/^[1-9]+[0-9]*$/), // Регулярка для отбора только цифр больше нуля
       ]),
     }));
+  }
+
+  onCancel(): void {
+    this.router.navigate(['../'], {relativeTo: this.route}).catch(error => console.error(error));
   }
 }
