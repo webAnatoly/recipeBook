@@ -29,6 +29,10 @@ export class RecipeService {
       ]),
   ];
 
+  get amount(): number { // возвращает кол-во рецептов
+    return this.recipes.length;
+  }
+
   constructor(private shoppingListService: ShoppingListService) { }
 
   getRecipes(): Recipe[] {
@@ -60,7 +64,7 @@ export class RecipeService {
   }
 
   deleteRecipe(index: number): void {
-    if (index && index < this.recipes.length) {
+    if (index < this.recipes.length) {
       this.recipes.splice(index, 1);
       this.recipeChanged.next(JSON.parse(JSON.stringify(this.recipes)));
     }

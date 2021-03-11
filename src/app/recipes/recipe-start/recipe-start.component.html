@@ -1,5 +1,8 @@
 <div class="recipe-start">
   <div class="recipe-start__message-container">
-    <p>Please, choose any recipe!</p>
+    <div *ngIf="isRecipesExists; else elseBlock"><p>Please, choose any recipe!</p></div>
+    <ng-template #elseBlock>
+      <button class="btn" (click)="onNewRecipe()">Create your first recipe!</button>
+    </ng-template>
   </div>
 </div>
