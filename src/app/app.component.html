@@ -1,29 +1,57 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <label for="inputFilterStatus">Enter status to filter: </label>
-      <input type="text" id="inputFilterStatus" [(ngModel)]="filteredStatus">
-      <br>
-      <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
-      <br><br>
-      <h2>App Status: {{ appStatus | async}}</h2>
-      <hr>
-      <br>
-      <ul class="list-group">
-        <li
-          class="list-group-item d-flex justify-content-between"
-          *ngFor="let server of servers | filter:filteredStatus:'status'"
-          [ngClass]="getStatusClasses(server, 'list-group-item')">
-          <span>
-            <strong>{{ server.name | shorten | wrapMe : '(':')'}}</strong> |
-            {{ server.instanceType | uppercase }} |
-            {{ server.started | date:'fullDate' | uppercase }}
-          </span>
-          <span class="badge" [ngClass]="getStatusClasses(server, 'badge')">
-            {{ server.status }}
-          </span>
-        </li>
-      </ul>
+      <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            required
+            ngModel
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea
+            class="form-control"
+            id="content"
+            required
+            ngModel
+            name="content"
+          ></textarea>
+        </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!postForm.valid"
+        >
+          Send Post
+        </button>
+      </form>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-primary" (click)="onFetchPosts()">
+        Fetch Posts
+      </button>
+      |
+      <button
+        class="btn btn-danger"
+        [disabled]="loadedPosts.length < 1"
+        (click)="onClearPosts()"
+      >
+        Clear Posts
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p>No posts available!</p>
     </div>
   </div>
 </div>
