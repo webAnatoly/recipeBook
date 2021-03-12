@@ -7,7 +7,7 @@
           *ngFor="let server of servers"
           [ngClass]="getStatusClasses(server, 'list-group-item')">
           <span>
-            <strong>{{ server.name | shorten | wrapMe: '***'}}</strong> |
+            <strong>{{ server.name | shorten | wrapMe : '(':')'}}</strong> |
             {{ server.instanceType | uppercase }} |
             {{ server.started | date:'fullDate' | uppercase }}
           </span>
