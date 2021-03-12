@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
+      <label for="inputFilterStatus">Enter status to filter: </label>
+      <input type="text" id="inputFilterStatus" [(ngModel)]="filteredStatus">
+      <br>
+      <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+      <br>
       <ul class="list-group">
         <li
           class="list-group-item d-flex justify-content-between"
-          *ngFor="let server of servers"
+          *ngFor="let server of servers | filter:filteredStatus:'status'"
           [ngClass]="getStatusClasses(server, 'list-group-item')">
           <span>
             <strong>{{ server.name | shorten | wrapMe : '(':')'}}</strong> |

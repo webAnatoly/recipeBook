@@ -32,6 +32,7 @@ export class AppComponent {
       started: new Date(15, 1, 2017)
     }
   ];
+  filteredStatus = '';
   getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date},
                    classPrefix: 'list-group-item' | 'badge'):
     {[key: string]: boolean} {
@@ -49,5 +50,14 @@ export class AppComponent {
           'badge-danger': server.status === 'critical'
         };
     }
+  }
+
+  onAddServer(): void {
+    this.servers.push({
+      instanceType: 'small',
+      name: 'New Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017),
+    });
   }
 }
