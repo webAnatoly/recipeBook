@@ -1,7 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filter'
+  name: 'filter',
+  pure: false, // by default true that means transform() method is invoked only when its input arguments changed
+  /*to read more about "pure" parameter Ctrl+Click on "pure" if you use Storm IDE*/
 })
 export class FilterPipe implements PipeTransform {
 
