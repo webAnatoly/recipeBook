@@ -44,11 +44,9 @@ export class PostsService {
   }
 
   // удаляет все посты
-  clearPosts(): void {
-    this.http.delete(
+  clearPosts(): Observable<object> {
+    return this.http.delete(
       `${this.endpoint}posts.json`,
-    ).subscribe((responseData) => {
-      console.log('all posts deleted');
-    });
+    );
   }
 }
