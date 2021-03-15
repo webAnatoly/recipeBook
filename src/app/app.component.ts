@@ -34,7 +34,11 @@ private fetchPosts(): void {
   }
 
   onCreatePost(postData: Post): void {
-    this.postsService.createAndStorePost(postData.title, postData.content);
+    this.postsService.createAndStorePost(postData.title, postData.content).subscribe(
+      (post: {name: string}) => { // {name: string} - это firebase такое возвращает, где name это айди нового поста
+        this.loadedPosts.push({title: postData.title, content: postData.content, id: post.name });
+      }
+    );
   }
 
   onFetchPosts(): void {

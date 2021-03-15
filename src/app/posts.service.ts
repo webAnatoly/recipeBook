@@ -12,15 +12,13 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-  createAndStorePost(title: string, content: string): void {
+  createAndStorePost(title: string, content: string): Observable<{name: string}> {
     const postData: Post = {title, content};
 
-    this.http.post<{name: string}>( // потому что firebase api возвращает объект со свойством {name: 'EntryIdAsString'}
+    return this.http.post<{name: string}>( // потому что firebase api возвращает объект со свойством {name: 'EntryIdAsString'}
       `${this.endpoint}posts.json`,
       postData
-    ).subscribe((responseData) => {
-      console.log('responseData', responseData.name);
-    });
+    );
   }
 
   fetchPosts(): Observable<Post[]> {
