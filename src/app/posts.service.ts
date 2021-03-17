@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Post } from './app.post.model';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, Subject, throwError } from 'rxjs';
@@ -23,6 +23,10 @@ export class PostsService {
   }
 
   fetchPosts(): Observable<Post[]> {
+    let searchParams = new HttpParams();
+    searchParams = searchParams.append('print', 'pretty'); // print=pretty это из API firebase
+    searchParams = searchParams.append('another', 'my_another_param'); // а это просто для эксперимента
+
     return this.http
       .get<{[key: string]: Post}>(
         `${this.endpoint}posts.json`,
@@ -30,7 +34,8 @@ export class PostsService {
           headers: new HttpHeaders ({
             'My-Custom-Header': 'Hello',
             'My-Second-Custom-Header': 'Hello 2',
-          })
+          }),
+          params: searchParams
         }
       )
       .pipe(
