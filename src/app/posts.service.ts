@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from './app.post.model';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
   endpoint = 'https://ng-project-881e4-default-rtdb.firebaseio.com/';
+  error = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
