@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Post } from './app.post.model';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { Observable, Subject, throwError } from 'rxjs';
 
 @Injectable({
@@ -70,6 +70,36 @@ export class PostsService {
   clearPosts(): Observable<object> {
     return this.http.delete(
       `${this.endpoint}posts.json`,
+      {
+        observe: 'events',
+      }
+    ).pipe(
+      tap((event) => { // tap - RxJS operator позволяющий "прикасаться" к Observable без изменения,
+        // т.е. можно выполнять какие-то side-effects
+
+        /*
+        * HttpEventType содержит, я так понимаю числовые коды состояний выполнения запроса.
+        * */
+
+        if (event.type === HttpEventType.Sent) {
+          // do something
+        }
+        if (event.type === HttpEventType.UploadProgress) {
+          // do something
+        }
+        if (event.type === HttpEventType.ResponseHeader) {
+          // do something
+        }
+        if (event.type === HttpEventType.UploadProgress) {
+          // do something
+        }
+        if (event.type === HttpEventType.Response) {
+          // do something
+        }
+        if (event.type === HttpEventType.User) {
+          // do something
+        }
+      })
     );
   }
 }
