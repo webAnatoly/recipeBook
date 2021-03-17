@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from './app.post.model';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, Subject, throwError } from 'rxjs';
@@ -23,7 +23,16 @@ export class PostsService {
   }
 
   fetchPosts(): Observable<Post[]> {
-    return this.http.get<{[key: string]: Post}>(`${this.endpoint}posts.json`)
+    return this.http
+      .get<{[key: string]: Post}>(
+        `${this.endpoint}posts.json`,
+        {
+          headers: new HttpHeaders ({
+            'My-Custom-Header': 'Hello',
+            'My-Second-Custom-Header': 'Hello 2',
+          })
+        }
+      )
       .pipe(
           map((responseData) => {
               const postArray: Post[] = [];
