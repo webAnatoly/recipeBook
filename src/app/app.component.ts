@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private http: HttpClient,
               private postsService: PostsService) {}
 
-private fetchPosts(): void {
+  private fetchPosts(): void {
   this.isFetching = true;
   this.postsService.fetchPosts().subscribe(
     (posts: Post[]) => {

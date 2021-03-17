@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Post } from './app.post.model';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, Subject, throwError } from 'rxjs';
@@ -18,7 +18,15 @@ export class PostsService {
 
     return this.http.post<{name: string}>( // потому что firebase api возвращает объект со свойством {name: 'EntryIdAsString'}
       `${this.endpoint}posts.json`,
-      postData
+      postData,
+      {
+        observe: 'body',
+        /*
+        body means that you get that response data extracted and converted to a JavaScript object automatically
+        but you don't have to stick to body. You can for example else change this to 'response'
+        observe: 'response' означает что будет возвращен полный HttpResponse object
+        * */
+      }
     );
   }
 
