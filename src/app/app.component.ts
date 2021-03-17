@@ -69,4 +69,7 @@ private fetchPosts(): void {
       });
   }
 
+  onHandleError(): void {
+    this.error = null;
+  }
 }
