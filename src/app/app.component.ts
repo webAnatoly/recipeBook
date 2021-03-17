@@ -11,6 +11,7 @@ import { PostsService } from './posts.service';
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching = false;
+  error: null | string = null;
 
   constructor(private http: HttpClient,
               private postsService: PostsService) {}
@@ -25,6 +26,13 @@ private fetchPosts(): void {
     (error) => {
       this.isFetching = false;
       console.error(error);
+      if (error.error && error.error.error) {
+        this.error = error.error.error;
+      } else if (error.message) {
+        this.error = error.message;
+      } else {
+        this.error = 'unexpected error';
+      }
     }
   );
 }

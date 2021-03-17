@@ -59,6 +59,10 @@
         </li>
       </ul>
       <p class="mt-4 mb-4" *ngIf="isFetching">Loading...</p>
+      <div class="alert alert-danger" *ngIf="error">
+        <h4>An Error Occurred!</h4>
+        <p>{{ error }}</p>
+      </div>
     </div>
   </div>
 </div>
