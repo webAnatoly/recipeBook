@@ -43,7 +43,20 @@ export class PostsService {
             'My-Custom-Header': 'Hello',
             'My-Second-Custom-Header': 'Hello 2',
           }),
-          params: searchParams
+          params: searchParams,
+          responseType: 'json', // по-умолчанию 'json', еще можно 'arraybuffer', 'blob', 'text'
+          /*
+          responseType: 'arraybuffer' - Constructs a GET request that interprets the body as an ArrayBuffer
+
+          responseType: 'blob'
+          Constructs a GET request that interprets the body as a Blob
+
+          responseType: 'text'
+          Constructs a GET request that interprets the body as a text string
+
+          responseType: 'json'
+          Constructs a GET request that interprets the body as a JSON object
+          */
         }
       )
       .pipe(
