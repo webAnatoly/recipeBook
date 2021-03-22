@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,13 @@ export class AuthInterceptorService implements HttpInterceptor{
         .set('another_param', 'yet another param')
     });
 
-    return next.handle(modifiedReq);
+    return next.handle(modifiedReq).pipe(
+      tap((event) => {
+        if (event.type === HttpEventType.Response) {
+          console.log('Response arrived, body data: ', event.body);
+        }
+      })
+    );
 
     // return next.handle(req); // by calling this you let the request continue
 
