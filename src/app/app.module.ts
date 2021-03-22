@@ -8,6 +8,7 @@ import { ShortenPipe } from './shorten.pipe';
 import { WrapMePipe } from './wrap-me.pipe';
 import { FilterPipe } from './filter.pipe';
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { LoggingInterceptorService } from './logging-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,11 @@ import { AuthInterceptorService } from './auth-interceptor.service';
       /* So this is just a dependency injection syntax supported by Angular that allows it to register a service
       under a different identifier and to have actually multiple services under that identifier,
       which will than all be provided and injected.*/
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptorService,
+      multi: true,
     }
   ],
   bootstrap: [AppComponent]
