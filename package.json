@@ -22,6 +22,7 @@
     "bootstrap": "4.6.0",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.6.0",
+    "superstruct": "^0.14.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

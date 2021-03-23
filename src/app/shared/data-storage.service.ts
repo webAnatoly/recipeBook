@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
+import { assert as tAssert, object as tObject, number as tNumber, string as tString, array as tArray } from 'superstruct';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,31 @@ export class DataStorageService {
     this.http
       .get<Recipe[]>('https://ng-recipe-book-f9d45-default-rtdb.firebaseio.com/recipes.json')
       .subscribe(recipes => {
-        console.log('fetched recipes', recipes);
-        this.recipeService.setRecipes(recipes);
+
+        // Описание структуры данных, которые ожидаю получить с сервера.
+        // Это описание повторяет структуру Recipe[]
+        const RecipeValidSchema = tArray(
+          tObject({
+            name: tString(),
+            description: tString(),
+            imagePath: tString(),
+            ingredients: tArray(
+              tObject(
+              {
+                name: tString(),
+                amount: tNumber()
+              })
+            ),
+          })
+        );
+
+        try {
+          tAssert(recipes, RecipeValidSchema); // Проверка, что полученные данные с сервера, соответствуют типу Recipe[]
+          this.recipeService.setRecipes(recipes);
+        } catch (e) {
+          console.error(e);
+        }
+
       });
   }
 }
