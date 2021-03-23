@@ -35,6 +35,12 @@ export class RecipeService {
 
   constructor(private shoppingListService: ShoppingListService) { }
 
+  setRecipes(recipes: Recipe[]): void {
+    const recipesCopy = JSON.parse(JSON.stringify(recipes));
+    this.recipes = recipesCopy;
+    this.recipeChanged.next(recipesCopy);
+  }
+
   getRecipes(): Recipe[] {
     return JSON.parse(JSON.stringify(this.recipes));
   }
