@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-interface AuthResponseData {
+export interface AuthResponseData {
   idToken: string;      // A Firebase Auth ID token for the newly created user.
   email: string;        // The email for the newly created user.
   refreshToken: string; // A Firebase Auth refresh token for the newly created user.
   expiresIn: string;    // The number of seconds in which the ID token expires.
   localId: string;      // The uid of the newly created user.
+  registered?: boolean; // Whether the email is for an existing account.
   kind?: string;        // В документации не указан, но firebase возвращает, возможно это устаревший параметр
 }
 
@@ -38,5 +39,14 @@ export class AuthService {
         return throwError(errorMessage);
       })
     );
+  }
+
+  login(email: string, password: string): Observable<AuthResponseData> {
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`;
+    return this.http.post<AuthResponseData>(url, {
+      email,
+      password,
+      returnSecureToken: true,
+    });
   }
 }
