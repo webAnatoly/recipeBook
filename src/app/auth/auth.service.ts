@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -17,9 +17,29 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiKey = 'AIzaSyD3KaD_soSYsNf8-U_1On-7CLEoLuRzxJM';
 
   constructor(private http: HttpClient) { }
+  private apiKey = 'AIzaSyD3KaD_soSYsNf8-U_1On-7CLEoLuRzxJM';
+
+  static handleError(errorResponse: HttpErrorResponse): Observable<never> {
+    console.log('errorResponse:', errorResponse);
+    let errorMessage = 'An error occurred!';
+    if (!errorResponse.error || !errorResponse.error.error) {
+      return throwError(errorMessage);
+    }
+    switch (errorResponse.error.error.message) {
+      case 'EMAIL_EXISTS':
+        errorMessage = 'This email exists already!';
+        break;
+      case 'EMAIL_NOT_FOUND':
+        errorMessage = 'This email doesn\'t exists!';
+        break;
+      case 'INVALID_PASSWORD':
+        errorMessage = 'Not correct login or password!';
+        break;
+    }
+    return throwError(errorMessage);
+  }
 
   signUp(email: string, password: string): Observable<AuthResponseData> {
     const endpoint = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
@@ -27,18 +47,7 @@ export class AuthService {
       email,
       password,
       returnSecureToken: true,
-    }).pipe(
-      catchError(errorResponse => {
-        let errorMessage = 'An error occurred!';
-        if (!errorResponse.error || !errorResponse.error.error) {
-          return throwError(errorMessage);
-        }
-        if (errorResponse.error.error.message === 'EMAIL_EXISTS') {
-          errorMessage = 'This email exists already!';
-        }
-        return throwError(errorMessage);
-      })
-    );
+    }).pipe(catchError(AuthService.handleError));
   }
 
   login(email: string, password: string): Observable<AuthResponseData> {
@@ -47,6 +56,6 @@ export class AuthService {
       email,
       password,
       returnSecureToken: true,
-    });
+    }).pipe(catchError(AuthService.handleError));
   }
 }
