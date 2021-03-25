@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, Subject, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { User } from './user.model';
 
 export interface AuthResponseData {
   idToken: string;      // A Firebase Auth ID token for the newly created user.
@@ -20,6 +21,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   private apiKey = 'AIzaSyD3KaD_soSYsNf8-U_1On-7CLEoLuRzxJM';
+  user = new Subject<User>(); // we emit a new user whenever we have one we login or also when we logout,
+  // when we clear the user, when the user becomes invalid or the token expired.
 
   static handleError(errorResponse: HttpErrorResponse): Observable<never> {
     console.log('errorResponse:', errorResponse);
@@ -41,13 +44,34 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
+  private handleAuthentication(email: string, userId: string, token: string, expiresIn: number): void {
+    const expirationDate = new Date(Date.now() + expiresIn * 1000);
+    const user: User = new User(
+      email,
+      userId,
+      token,
+      expirationDate
+    );
+    this.user.next(user);
+  }
+
   signUp(email: string, password: string): Observable<AuthResponseData> {
     const endpoint = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
     return this.http.post<AuthResponseData>(endpoint, {
       email,
       password,
       returnSecureToken: true,
-    }).pipe(catchError(AuthService.handleError));
+    }).pipe(
+      catchError(AuthService.handleError),
+      tap(responseData => {
+        this.handleAuthentication(
+          responseData.email,
+          responseData.localId,
+          responseData.idToken,
+          Number(responseData.expiresIn)
+        );
+      })
+    );
   }
 
   login(email: string, password: string): Observable<AuthResponseData> {
@@ -56,6 +80,16 @@ export class AuthService {
       email,
       password,
       returnSecureToken: true,
-    }).pipe(catchError(AuthService.handleError));
+    }).pipe(
+      catchError(AuthService.handleError),
+      tap(responseData => {
+        this.handleAuthentication(
+          responseData.email,
+          responseData.localId,
+          responseData.idToken,
+          Number(responseData.expiresIn)
+        );
+      })
+    );
   }
 }
