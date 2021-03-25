@@ -12,13 +12,13 @@
     <div class="menu-wrapper">
       <div class="menu-container">
         <ul [ngClass]="{'show-mob-menu': isMobileMenuVisible}">
-          <li routerLinkActive="active"><a routerLink="recipes">Recipes</a></li>
-          <li routerLinkActive="active"><a routerLink="auth">Authenticate</a></li>
+          <li routerLinkActive="active" *ngIf="isAuthenticated"><a routerLink="recipes">Recipes</a></li>
+          <li routerLinkActive="active" *ngIf="!isAuthenticated"><a routerLink="auth">Authenticate</a></li>
           <li routerLinkActive="active"><a routerLink="shopping-list">Shopping List</a></li>
         </ul>
       </div>
       <div class="right-menu-container">
-        <div class="dropdown" appDropdown>
+        <div class="dropdown" appDropdown *ngIf="isAuthenticated">
           <div class="dropdown__button" role="button">
             <span>Manage</span>&nbsp;
             <span class="arrow-down"></span>
@@ -26,6 +26,7 @@
           <div class="dropdown-menu">
             <a class="dropdown-item" (click)="onSaveData()">Save Data</a>
             <a class="dropdown-item" (click)="onFetchData()">Fetch Data</a>
+            <a class="dropdown-item">Logout</a>
           </div>
         </div>
       </div>
