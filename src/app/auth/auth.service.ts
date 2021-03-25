@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subject, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from './user.model';
 
@@ -21,7 +21,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   private apiKey = 'AIzaSyD3KaD_soSYsNf8-U_1On-7CLEoLuRzxJM';
-  user = new Subject<User>(); // we emit a new user whenever we have one we login or also when we logout,
+  user = new BehaviorSubject<User | null>(null); // we emit a new user whenever we have one we login or also when we logout,
   // when we clear the user, when the user becomes invalid or the token expired.
 
   static handleError(errorResponse: HttpErrorResponse): Observable<never> {
